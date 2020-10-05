@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     if (Auth::check()) {
         return redirect('home');
-    }else {
+    } else {
         return view('auth.login');
     }
 });
@@ -25,19 +25,19 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-///Products Route
-Route::get('/products', 'ProductController@index')->name('mainProducts');
-//banking
-Route::get('/products/banking', 'ProductController@dataBankingList')->name('BankingProducts');
-Route::get('/products/banking/add', 'ProductController@addBanking')->name('AddBanking');
-Route::post('/products/banking/add', 'ProductController@createBanking')->name('CreateBanking');
-Route::get('/products/banking/{id}/edit', 'ProductController@editBanking')->name('EditBanking');
-Route::put('/products/banking/{id}/', 'ProductController@updateBanking')->name('UpdateBanking');
-Route::delete('/products/banking/{id}', 'ProductController@deleteBanking')->name('DeleteBanking');
-//electronic
-Route::get('/products/electronic', 'ProductController@dataElectronicList')->name('ElectronicProducts');
-Route::get('/products/electronic/add', 'ProductController@addElectronic')->name('AddElectronic');
-Route::post('/products/electronic/add', 'ProductController@createElectronic')->name('CreateElectronic');
-Route::delete('/products/electronic/{id}', 'ProductController@deleteElectronic')->name('DeleteElectronic');
-///Spareparats Route
-Route::get('/spareparts', 'SparepartController@index')->name('mainSparepart');
+///calls Route
+Route::get('/call', 'CallController@index')->name('mainCall');
+//Call recieves
+Route::get('/call/recieves', 'RecieveController@dataRecieve')->name('recieveList');
+Route::get('/call/recieves/add', 'RecieveController@addCalls')->name('addCall');
+Route::post('/call/recieves/add', 'RecieveController@createCalls')->name('createCall');
+Route::get('/call/recieves/{id}/edit', 'RecieveController@editCalls')->name('editCall');
+Route::put('/call/recieves/{id}/', 'RecieveController@updateCalls')->name('updateCall');
+Route::delete('/call/recieves/{id}', 'RecieveController@deleteCalls')->name('deleteCall');
+//Call responses
+Route::get('/call/responses', 'ResponseController@dataRecieve')->name('responseList');
+Route::get('/call/responses/add', 'ResponseController@addCalls')->name('AddResponse');
+Route::post('/call/responses/add', 'ResponseController@createCalls')->name('CreateResponse');
+Route::get('/call/responses/{id}/edit', 'ResponseController@editCalls')->name('editCall');
+Route::put('/call/responses/{id}/', 'ResponseController@updateCalls')->name('updateCall');
+Route::delete('/call/responses/{id}', 'ResponseController@deleteCalls')->name('DeleteResponse');

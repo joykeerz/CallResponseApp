@@ -206,40 +206,24 @@
                                 aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
                                     class="hide-menu">Dashboard</span></a></li>
                         <li class="list-divider"></li>
-                        <li class="nav-small-cap"><span class="hide-menu">Data</span></li>
+                        <li class="nav-small-cap"><span class="hide-menu">Manage</span></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
-                                    class="hide-menu">Products</span></a>
+                                    class="hide-menu">Calls</span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                                <li class="sidebar-item"><a href="{{ route('BankingProducts') }}" class="sidebar-link"><span
-                                            class="hide-menu"> Banking
+                                <li class="sidebar-item"><a href="{{ route('recieveList') }}" class="sidebar-link"><span
+                                            class="hide-menu"> Call Recieves
                                         </span></a>
                                 </li>
-                                <li class="sidebar-item"><a href="{{ route('ElectronicProducts') }}" class="sidebar-link"><span
-                                            class="hide-menu"> Electronics
+                                <li class="sidebar-item"><a href="{{ route('responseList') }}" class="sidebar-link"><span
+                                            class="hide-menu"> Call responses
                                         </span></a>
                                 </li>
 
                             </ul>
                         </li>
-
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                            aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
-                                class="hide-menu">Spareparts </span></a>
-                        <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                            <li class="sidebar-item"><a href="#" class="sidebar-link"><span
-                                        class="hide-menu"> Banking
-                                    </span></a>
-                            </li>
-                            <li class="sidebar-item"><a href="#" class="sidebar-link"><span
-                                        class="hide-menu"> Electronics
-                                    </span></a>
-                            </li>
-
-                        </ul>
-                    </li>
                         <li class="list-divider"></li>
-                        <li class="nav-small-cap"><span class="hide-menu">Extra</span></li>
+                        <li class="nav-small-cap"><span class="hide-menu">Others</span></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
                             aria-expanded="false"><i data-feather="printer" class="feather-icon icon-printer"></i><span
                                 class="hide-menu">Report</span></a></li>

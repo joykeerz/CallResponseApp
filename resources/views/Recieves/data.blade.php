@@ -25,21 +25,11 @@ Admin Dashboard | Products
 @endif
 
 <div class="card col-md-3 bg-dark text-white">
-
-
-
-        @if ($type == '3')
-            <a href="{{ route('AddBanking') }}">
-        @endif
-
-        @if ($type == '4')
-            <a href="{{ route('AddElectronic') }}">
-        @endif
-
+            <a href="{{ route('addCall') }}">
     <div class="card-body">
         <div class="d-flex d-lg-flex d-md-block align-items-center">
             <div>
-                <h4 class="mt-lg-2 mt-2 font-weight-medium text-white">Add Product</h4>
+                <h4 class="mt-lg-2 mt-2 font-weight-medium text-white">Add Call Recieve</h4>
             </div>
             <div class="ml-auto mt-md-3 mt-lg-0">
                     <span class="opacity-7 text-muted"><i data-feather="plus" class="feather-icon"></i></span>
@@ -51,49 +41,44 @@ Admin Dashboard | Products
 
 <div class="card text-dark bg-white">
     <div class="card-header">
-        <h4 class="mb-0 text-dark">{{$type == 3 ? 'Banking Data' : 'Electronic Data'}}</h4>
+        <h4 class="mb-0 text-dark"></h4>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table id="zero_config" class="table table-striped table-bordered no-wrap">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>Category</th>
-                        <th>P.Number</th>
-                        <th>Serial</th>
+                        <th>no</th>
+                        <th>Name</th>
                         <th>Location</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                        <th>Option</th>
+                        <th>Equipment</th>
+                        <th>ID Number</th>
+                        <th>Problem</th>
+                        <th>Ticket No</th>
+                        <th>actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($products as $item)
+                    @foreach ($calls as $item)
                     <tr>
-                        <td>{{$item->id}}</td>
-                        <td>{{$item->Categoryname}}</td>
-                        <td>{{$item->productNumber}}</td>
-                        <td>{{$item->serialNumber}}</td>
+                        @php
+                            $no = $no+1
+                        @endphp
+                        <td>{{$no}}</td>
+                        <td>{{$item->nama}}</td>
                         <td>{{$item->location}}</td>
-                        <td>{{$item->status}}</td>
-                        <td>{{$item->created_at}}</td>
+                        <td>{{$item->equipment}}</td>
+                        <td>{{$item->idNumber}}</td>
+                        <td>{{$item->problem}}</td>
+                        <td>{{$item->ticket_number}}</td>
                         <td class="d-flex flex-row">
-                            <a href="
-                            @if ($type == '3')
-                            {{ route('EditBanking', ['id'=>$item->id]) }}
-                            @endif
-                            "class="mr-2">
-                                <span class="btn btn-cyan btn-circle icon-pencil"></span>
+                            <a href="{{ route('editCall', ['id'=>$item->recieve_id]) }}" class="mr-2">
+                                <span class="btn btn-cyan btn-rounded icon-pencil"></span>
                             </a>
-                            <form action="
-                            @if ($type == '3')
-                            {{ route('DeleteBanking', ['id'=>$item->id]) }}
-                            @else
-                            {{ route('DeleteElectronic', ['id'=>$item->id]) }}
-                            @endif
-                            " method="POST">
-                                <input type="submit" name="submit" value="" class="btn btn-danger btn-circle">
+                            <form action="{{ route('deleteCall', ['id'=>$item->recieve_id]) }}" method="POST">
+                                <button type="submit" name="submit" class="btn btn-danger btn-rounded">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             @csrf
                                 <input type="hidden" name="_method" value="DELETE">
                             </form>
@@ -103,14 +88,14 @@ Admin Dashboard | Products
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>id</th>
-                        <th>Category</th>
-                        <th>P.Number</th>
-                        <th>Serial</th>
+                        <th>no</th>
+                        <th>Name</th>
                         <th>Location</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                        <th>Date</th>
+                        <th>Equipment</th>
+                        <th>ID Number</th>
+                        <th>Problem</th>
+                        <th>Ticket No</th>
+                        <th>actions</th>
                     </tr>
                 </tfoot>
             </table>

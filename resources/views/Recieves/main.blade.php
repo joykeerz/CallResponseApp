@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Admin Dashboard | Spareparts
+Admin Dashboard | Products
 @endsection
 
 @section('user')
@@ -14,22 +14,22 @@ Admin Dashboard | Spareparts
     <div class="col-md-6">
         <div class="card text-white bg-dark">
             <div class="card-header">
-                <h4 class="mb-0 text-white">Banking Spareparts</h4>
+                <h4 class="mb-0 text-white">Call Recieves</h4>
             </div>
             <div class="card-body">
-                <h3 class="card-title text-white">Manage Banking Spareparts</h3>
-                <a href="javascript:void(0)" class="btn btn-primary"><i class="icon-arrow-right-circle mr-2" class="feather-icon"></i>Manage</a>
+                <h3 class="card-title text-white">Manage Call Recieves</h3>
+                <a href="{{ route('recieveList') }}" class="btn btn-primary"><i class="icon-arrow-right-circle mr-2" class="feather-icon"></i>Manage</a>
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card text-white bg-dark">
             <div class="card-header">
-                <h4 class="mb-0 text-white">Electronic Spareparts</h4>
+                <h4 class="mb-0 text-white">Call Response</h4>
             </div>
             <div class="card-body">
-                <h3 class="card-title text-white">Manage Electronic Spareparts</h3>
-                <a href="javascript:void(0)" class="btn btn-primary"><i class="icon-arrow-right-circle mr-2" class="feather-icon"></i>Manage</a>
+                <h3 class="card-title text-white">Manage Call Response</h3>
+                <a href="{{ route('responseList') }}" class="btn btn-primary"><i class="icon-arrow-right-circle mr-2" class="feather-icon"></i>Manage</a>
             </div>
         </div>
     </div>
@@ -38,9 +38,9 @@ Admin Dashboard | Spareparts
 
     {{-- Sub Categories --}}
     {{-- End Sub Categories --}}
-    @endsection
+@endsection
 
-    @section('plugins')
+@section('plugins')
     <script src="{{ asset('/dist/assets/libs/jquery/dist/jquery.min.js')}}"></script>
     <script src="{{ asset('/dist/assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
     <script src="{{ asset('/dist/assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>

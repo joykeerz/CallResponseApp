@@ -26,8 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $TotalProducts = DB::table('products')->get()->count();
-        $TotalSpareparts = DB::table('spareparts')->get()->count();
-        return view('admin.index',['TotalProducts'=>$TotalProducts, 'TotalSpareparts'=>$TotalSpareparts]);
+        $TotalCallRecieves = DB::table('call_recieves')->get()->count();
+        $TotalCallResponses = DB::table('call_responses')->get()->count();
+        return view('admin.index', ['TotalCallRecieves' => $TotalCallRecieves, 'TotalCallResponses' => $TotalCallResponses]);
     }
 }

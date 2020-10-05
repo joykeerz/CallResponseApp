@@ -15,59 +15,54 @@ Admin Dashboard | Products
 @endsection
 
 @section('content')
-<h4 class="card-title mt-5">Edit Banking Product</h4>
+<h4 class="card-title mt-5">Add new Call</h4>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="card">
-            <form action="
-            @if ($type == '3')
-            {{ route('CreateBanking') }}
-            @else
-            {{ route('CreateElectronic') }}
-            @endif
-            " method="post">
+            <form action="{{ route('createCall') }}" method="post">
                 <div class="card-body">
-                    <h4 class="card-title">Product Number</h4>
+
+                    <h4 class="card-title">Customer Name</h4>
                     <div class="form-group">
-                        <input type="hidden" class="form-control" name="product_id" value="{{$products->id}}">
-                        <input type="text" class="form-control" name="number" value="{{$products->productNumber}}">
+                        <input type="text" class="form-control" name="tb_customer_name">
+                        <input type="hidden" value="{{ Auth::user()->id }}" name="tb_user_id">
                     </div>
 
-                    <h4 class="card-title">Serial Number</h4>
+                    <h4 class="card-title">Customer Contact</h4>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="serial" value="{{$products->serialNumber}}">
+                        <input type="text" class="form-control" name="tb_customer_contact">
                     </div>
 
                     <h4 class="card-title">Location</h4>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="location" value="{{$products->location}}">
+                        <input type="text" class="form-control" name="tb_location">
                     </div>
 
-                    <h4 class="card-title">Status</h4>
-                    <div class="form-group mb-4">
-                        <label for="exampleFormControlSelect1">Select Product Satus</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="status">
-                            <option>--{{$products->status}}--</option>
-                            <option>New</option>
-                            <option>Used</option>
-                        </select>
+                    <h4 class="card-title">Equipment</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="tb_equipment">
                     </div>
 
-                    <h4 class="card-title">Category</h4>
-                    <div class="form-group mb-4">
-                        <label for="exampleFormControlSelect1">Select Product Category</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="category">
-                            <option>--{{$products->status}}--</option>
-                            @foreach($value as $item)
-                                <option value="{{ $item->id }}" label="">{{ $item->Categoryname }}</option>
-                            @endforeach
-                        </select>
+                    <h4 class="card-title">ID Number</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="tb_id_number">
                     </div>
-                    <button class="btn btn-labeled btn-primary float-right mt-3" type="submit">
+
+                    <h4 class="card-title">Problem</h4>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" name="tb_problem"></textarea>
+                    </div>
+
+                    <h4 class="card-title">Ticket Number</h4>
+                    <div class="form-group">
+                    <input type="text" class="form-control" name="tb_ticket_number" readonly value="{{rand(1,100)}}">
+                    </div>
+
+                    <button class="btn btn-labeled btn-primary float-right mb-3" type="submit">
                         <span class="btn-label">
                             <i class="fa fa-check"></i>
                         </span>
-                        Done
+                        Add
                         @csrf
                     </button>
                 </div>
