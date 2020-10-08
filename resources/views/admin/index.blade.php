@@ -8,45 +8,33 @@ Admin Dashboard
 {{ Auth::user()->name }}
 @endsection
 
+@section('livewirestyles')
+    @livewireStyles
+@endsection
+
 @section('content')
 {{-- Categories --}}
-<div class="card-group">
-    <div class="card border-right">
-        <div class="card-body">
-            <div class="d-flex d-lg-flex d-md-block align-items-center">
-                <div>
-                    <div class="d-inline-flex align-items-center">
-                        <h2 class="text-dark mb-1 font-weight-medium">{{$TotalCallRecieves}}</h2>
-                        {{-- <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">
-                            +18.33%
-                        </span> --}}
-                    </div>
-                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Call Recieves</h6>
+    {{-- <livewire:counter> --}}
+        <div class="card" style="
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)), url({{ asset('/dist/assets/images/yaksa/overlay.jpg')}});
+        background-repeat: no-repeat;
+        background-size: cover;">
+            <div class="container mt-5" style="color: white">
+                <div class="inline-block text-center">
+                    <span><img src="{{ asset('/dist/assets/images/yaksa/logo.png')}}" style="width: 2rem" alt="logo" class="dark-logo" /></span>
+                    <span class="align-bottom">Yaksa Harmoni Global</span>
                 </div>
-                <div class="ml-auto mt-md-3 mt-lg-0">
-                    <a href="{{ route('recieveList') }}">
-                    <span class="opacity-7 text-muted"><i data-feather="arrow-right-circle" class="feather-icon"></i></span>
-                    </a>
-                </div>
+                <h1 class="text-center">Call Handling Management System</h1>
+                <hr class="my-2">
+                <p></p>
+                <p class="lead text-center">
+                    <a class="btn btn-primary btn-lg btn-rounded" href="{{ route('recieveList') }}" role="button">Start Now</a>
+                </p>
+                <br><br><br><br><br><br><br><br><br><br><br>
+                {{-- <img src="{{ asset('/dist/assets/images/yaksa/overlay.jpg')}}" width="30%" alt="" srcset=""> --}}
             </div>
         </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <div class="d-flex d-lg-flex d-md-block align-items-center">
-                <div>
-                    <h2 class="text-dark mb-1 font-weight-medium">{{$TotalCallResponses}}</h2>
-                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Call Responses</h6>
-                </div>
-                <div class="ml-auto mt-md-3 mt-lg-0">
-                    <a href="{{ route('responseList') }}">
-                        <span class="opacity-7 text-muted"><i data-feather="arrow-right-circle" class="feather-icon"></i></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 {{-- End Categories --}}
 
 {{-- Sub Categories --}}
@@ -73,4 +61,8 @@ Admin Dashboard
     <script src="{{ asset('/dist/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js')}}"></script>
     <script src="{{ asset('/dist/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js')}}"></script>
     <script src="{{ asset('/dist/dist/js/pages/dashboards/dashboard1.min.js')}}"></script>
+@endsection
+
+@section('livewirescripts')
+    @livewireScripts
 @endsection

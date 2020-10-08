@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Admin Dashboard | Products
+Admin Dashboard | Recieved call
 @endsection
 
 @section('user')
@@ -15,7 +15,7 @@ Admin Dashboard | Products
 @endsection
 
 @section('content')
-<h4 class="card-title mt-5">Edit Banking Product</h4>
+<h4 class="card-title mt-5">Edit Recieved call</h4>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="card">

@@ -28,7 +28,9 @@ Admin Dashboard | Recieved call
             <a href="{{ route('addCall') }}">
     <div class="card-body">
         <div class="d-flex d-lg-flex d-md-block align-items-center">
-                <h4 class="mt-lg-2 mt-2 font-weight-bold text-white">Add Call Recieve</h4>
+            <div>
+                <h4 class="mt-lg-2 mt-2 font-weight-medium text-white">Add Call Recieve</h4>
+            </div>
             <div class="ml-auto mt-md-3 mt-lg-0">
                     <span class="opacity-7 text-muted"><i data-feather="plus" class="feather-icon"></i></span>
                 </div>
@@ -73,9 +75,6 @@ Admin Dashboard | Recieved call
                             <a href="{{ route('editCall', ['id'=>$item->recieve_id]) }}" class="mr-2">
                                 <span class="btn btn-cyan btn-rounded icon-pencil"></span>
                             </a>
-                            <a href="{{ route('callDetail', ['id'=>$item->recieve_id]) }}" class="mr-2">
-                                <span class="btn btn-primary btn-rounded  icon-call-in"></span>
-                            </a>
                             <form action="{{ route('deleteCall', ['id'=>$item->recieve_id]) }}" method="POST">
                                 <button type="submit" name="submit" class="btn btn-danger btn-rounded">
                                     <i class="fas fa-trash"></i>
@@ -102,7 +101,6 @@ Admin Dashboard | Recieved call
             </table>
         </div>
     </div>
-
 </div>
 @endsection
 

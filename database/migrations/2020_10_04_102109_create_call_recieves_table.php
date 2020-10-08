@@ -22,8 +22,10 @@ class CreateCallRecievesTable extends Migration
             $table->string('location', 50);
             $table->string('equipment', 20);
             $table->string('idNumber', 50);
-            $table->text('problem', 255);
-            $table->text('ticket_number', 10);
+            $table->text('problem', 3);
+            $table->text('description', 255);
+            $table->string('ticket_number', 10);
+            $table->string('is_responded', 1)->default('0');
             $table->timestamps();
         });
     }

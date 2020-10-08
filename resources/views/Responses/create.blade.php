@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Admin Dashboard | Recieved call
+Admin Dashboard | Call Response
 @endsection
 
 @section('user')
@@ -15,44 +15,43 @@ Admin Dashboard | Recieved call
 @endsection
 
 @section('content')
-<h4 class="card-title mt-5">Add new Call</h4>
+@if (session()->has('success'))
+    <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show"
+        role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Success - </strong> {{ session()->get('success') }}
+    </div>
+@endif
+<h4 class="card-title mt-5">Add response for this call</h4>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="card">
-            <form action="{{ route('createCall') }}" method="post">
+            {{-- <form action="{{ route('createResponse') }}" method="post">
                 <div class="card-body">
 
-                    <h4 class="card-title">Customer Name</h4>
+                    <h4 class="card-title">Ticket Number</h4>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="tb_customer_name">
+                        <input type="text" readonly class="form-control bg-dark text-white" value="{{ $RecievedCall->ticket_number }}" name="tb_ticket_number">
                         <input type="hidden" value="{{ Auth::user()->id }}" name="tb_user_id">
+                        <input type="hidden" value="{{ $RecievedCall->recieve_id }}" name="tb_recieve_id">
                     </div>
 
-                    <h4 class="card-title">Customer Contact</h4>
+                    <h4 class="card-title">Action Taken</h4>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="tb_customer_contact">
+                        <select class="form-control" name="cb_action">
+                            <option>guide by phone</option>
+                            <option>pending</option>
+                            <option>Site Visit</option>
+                        </select>
                     </div>
 
-                    <h4 class="card-title">Location</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="tb_location">
-                    </div>
-
-                    <h4 class="card-title">Equipment</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="tb_equipment">
-                    </div>
-
-                    <h4 class="card-title">ID Number</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="tb_id_number">
-                    </div>
-
-                    <h4 class="card-title">Job</h4>
+                    <h4 class="card-title">Result</h4>
                     <div class="form-group">
                         <select class="form-control" name="cb_result">
-                            <option value="1">PM</option>
-                            <option value="2">CM</option>
+                            <option>solved</option>
+                            <option>unsolved</option>
                         </select>
                     </div>
 
@@ -61,10 +60,7 @@ Admin Dashboard | Recieved call
                         <textarea class="form-control" rows="3" name="tb_problem"></textarea>
                     </div>
 
-                    <h4 class="card-title">Ticket Number</h4>
-                    <div class="form-group">
-                    <input type="text" class="form-control" name="tb_ticket_number" readonly value="{{rand(1,100)}}">
-                    </div>
+
 
                     <button class="btn btn-labeled btn-primary float-right mb-3" type="submit">
                         <span class="btn-label">
@@ -74,7 +70,8 @@ Admin Dashboard | Recieved call
                         @csrf
                     </button>
                 </div>
-            </form>
+            </form> --}}
+            @livewire('response-form-wire', ['RecievedCall' => $RecievedCall])
         </div>
     </div>
 </div>

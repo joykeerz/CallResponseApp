@@ -24,6 +24,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+    @yield('livewirestyles')
 </head>
 
 <body>
@@ -159,7 +160,7 @@
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <img src="{{ asset('/dist/assets/images/yaksa/BGAboutUS.png')}}" alt="imgUser" class="rounded-circle"
-                                    width="40">
+                                    width="40" height="40">
                                 <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
                                         class="text-dark">@yield('user')</span> <i data-feather="chevron-down"
                                         class="svg-icon"></i></span>
@@ -260,7 +261,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Welcome @yield('user')</h3>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Hello @yield('user')</h3>
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb m-0 p-0">
@@ -307,6 +308,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     @yield('plugins')
+    @yield('livewirescripts')
 
 </body>
 

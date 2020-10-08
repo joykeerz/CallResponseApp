@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CallRecieve;
+use App\CallResponse;
 use App\Customer;
+use App\ResponseChain;
 use Illuminate\Support\Facades\DB;
 
 class RecieveController extends Controller
@@ -22,6 +24,14 @@ class RecieveController extends Controller
             ->select('call_recieves.*', 'users.*', 'customers.*')
             ->get();
         return view('Recieves.data', ['calls' => $dataCallRecieve, 'no' => 0]);
+    }
+
+    public function callDetails($id)
+    {
+        $RecievedCall = CallRecieve::where('recieve_id', '=', $id)->firstOrFail();
+        $Customer = Customer::where('customer_id', '=', $RecievedCall->customer_id)->firstOrFail();
+        $callResponses = CallResponse::where('recieve_id', '=', $RecievedCall->recieve_id)->get();
+        return view('Recieves.detail', ['RecievedCall' => $RecievedCall, 'callResponses' => $callResponses, 'Customer' => $Customer]);
     }
 
     public function addCalls()
@@ -55,6 +65,7 @@ class RecieveController extends Controller
     {
         $RecievedCall = CallRecieve::where('recieve_id', '=', $id)->firstOrFail();
         $Customer = Customer::where('customer_id', '=', $RecievedCall->customer_id)->firstOrFail();
+
         if (!$RecievedCall) {
             dd('data tidak ada');
         }

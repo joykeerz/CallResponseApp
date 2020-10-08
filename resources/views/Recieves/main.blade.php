@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Admin Dashboard | Products
+Admin Dashboard | Recieved call
 @endsection
 
 @section('user')
