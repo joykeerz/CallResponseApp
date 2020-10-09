@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Admin Dashboard | Call Response
+Admin Dashboard | Recieved call
 @endsection
 
 @section('user')
@@ -15,20 +15,38 @@ Admin Dashboard | Call Response
 @endsection
 
 @section('content')
-@if (session()->has('success'))
-    <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show"
-        role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <strong>Success - </strong> {{ session()->get('success') }}
-    </div>
-@endif
-<h4 class="card-title mt-5">Add response for this call</h4>
+<h4 class="card-title mt-5">Add new hardware</h4>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="card">
-            @livewire('response-form-wire', ['RecievedCall' => $RecievedCall])
+            <form action="{{ route('createHardwareRoute') }}" method="post">
+                <div class="card-body">
+
+                    <h4 class="card-title">hardware name</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="tb_hardware_name">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="cb_type"></label>
+                      <select class="form-control" name="cb_type" id="cb_type">
+                          @forelse ($types as $type)
+                            <option value="{{$type->hardware_type_id}}">{{$type->hardware_type_name}}</option>
+                          @empty
+                            <option>please add atleast one hardware type first</option>
+                          @endforelse
+                      </select>
+                    </div>
+
+                    <button class="btn btn-labeled btn-primary float-right mb-3" type="submit">
+                        <span class="btn-label">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        Add
+                        @csrf
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

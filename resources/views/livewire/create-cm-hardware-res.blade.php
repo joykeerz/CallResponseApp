@@ -1,12 +1,5 @@
 <div>
-    {{-- @if ($RecievedCall->problem == '1')
-        @include('livewire.create-pm-res')
-    @elseif($RecievedCall->problem == '21')
-        @include('livewire.create-cm-software-res')
-    @elseif($RecievedCall->problem == '22')
-        @include('livewire.create-cm-hardware-res')
-    @endif --}}
-    {{-- <form action="{{ route('createResponse') }}" method="post">
+    <form action="{{ route('createResponse') }}" method="post">
         <div class="card-body">
             <h4 class="card-title">Ticket Number</h4>
             <div class="form-group">
@@ -44,18 +37,5 @@
                 @csrf
             </button>
         </div>
-    </form> --}}
-    @switch($RecievedCall->problem)
-    @case('1')
-        @include('livewire.create-pm-res')
-        @break
-    @case('21')
-        @include('livewire.create-cm-software-res')
-        @break
-    @case('22')
-        @include('livewire.create-cm-hardware-res')
-        @break
-    @default
-       oops not found.please contact your engineer.
-@endswitch
+    </form>
 </div>

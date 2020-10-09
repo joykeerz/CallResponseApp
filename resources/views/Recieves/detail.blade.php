@@ -31,7 +31,21 @@ Admin Dashboard | Recieved call
                         <label class="form-control">Location : {{$RecievedCall->location}}<br></label>
                         <label class="form-control">Equipment : {{$RecievedCall->equipment}}<br></label>
                         <label class="form-control">ID Number : {{$RecievedCall->idNumber}}<br></label>
-                        <label class="form-control">Problem : {{$RecievedCall->problem}}<br></label>
+                        <label class="form-control">Job :
+                            @if ($RecievedCall->problem == '1')
+                                PM
+                            @elseif($RecievedCall->problem == '21')
+                                CM (Softwawre)
+                            @elseif($RecievedCall->problem == '22')
+                                CM (Hardware)
+                            @elseif($RecievedCall->problem == '3')
+                                Installation
+                            @elseif($RecievedCall->problem == '4')
+                                Software Dev
+                            @endif
+                            <br>
+                        </label>
+                        <p class="form-control">Description : {{$RecievedCall->description}}</p>
                         <label class="form-control">Ticket Number : {{$RecievedCall->ticket_number}}<br></label>
                         <label class="form-control">Input Date : {{$RecievedCall->created_at}}<br></label>
                     </p>
@@ -41,55 +55,76 @@ Admin Dashboard | Recieved call
     <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="card">
             <ul class="list-group">
+{{-- Cek status respond --}}
                 <li class="list-group-item active bg-dark">
                     @if (count($callResponses)>0)
-                    <span class="badge badge-primary">Responded</span>
-                        @if ($RecievedCall->is_responded == '1')
+                        <span class="badge badge-primary">Responded</span>
+                        @if ($RecievedCall->is_responded == '1' )
                             <span class="badge badge-info">closed</span>
                         @else
                             <span class="badge badge-info">On Progress</span>
                         @endif
+                    @elseif($RecievedCall->problem == '3' || $RecievedCall->problem == '4')
+                        <span class="badge badge-primary">Responded</span>
                     @else
                         <span class="badge badge-danger"> No Respond</span>
                     @endif
                 </li>
-
+{{-- Cek ticket status --}}
                 <li class="list-group-item">
-                    @if (count($callResponses)>0)
-                    @if ($RecievedCall->is_responded == '1')
-                            <span class="badge badge-success">This ticket has been closed</span>
+                    @if ($RecievedCall->problem == '3' || $RecievedCall->problem == '4')
+
+                    @else
+                        @if (count($callResponses)>0)
+                            @if ($RecievedCall->is_responded == '1')
+                                <span class="badge badge-success mb-1">This ticket has been closed</span><br>
+                                History
+                            @else
+                                <a href="{{ route('addResponse',['id'=>$RecievedCall->recieve_id]) }}" class="badge badge-info">+</a>
+                                {{-- <a href="{{ route('closeResponse',['id'=>$RecievedCall->recieve_id]) }}" class="badge badge-success"> --}}
+                                    {{-- <i class="fa fa-check" aria-hidden="true"></i> --}}
+                                {{-- </a> --}}
+                                <form action="{{ route('closeResponse',['id'=>$RecievedCall->recieve_id]) }}" method="POST">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    @csrf
+                                    <button type="submit" class="badge badge-success"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                </form>
+                            @endif
                         @else
-                            <a href="{{ route('addResponse',['id'=>$RecievedCall->recieve_id]) }}" class="badge badge-info">+</a>
-                            {{-- <a href="{{ route('closeResponse',['id'=>$RecievedCall->recieve_id]) }}" class="badge badge-success"> --}}
-                                {{-- <i class="fa fa-check" aria-hidden="true"></i> --}}
-                            {{-- </a> --}}
-                            <form action="{{ route('closeResponse',['id'=>$RecievedCall->recieve_id]) }}" method="POST">
-                                <input type="hidden" name="_method" value="PUT">
+                            This call haven't been responded yet<br>
+                            <form action="{{ route('openResponse')}}" method="POST">
+                                <input type="hidden" value="{{$RecievedCall->recieve_id}}" name="tb_recieve_id">
                                 @csrf
-                                <button type="submit" class="badge badge-success"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button type="submit" class="btn btn-info">Open Ticket</button>
                             </form>
                         @endif
-                    @else
-                        This call haven't been responded yet<br>
-                        <form action="{{ route('openResponse')}}" method="POST">
-                            <input type="hidden" value="{{$RecievedCall->recieve_id}}" name="tb_recieve_id">
-                            @csrf
-                            <button type="submit" class="btn btn-info">Open Ticket</button>
-                        </form>
                     @endif
-                </li>
 
-                @forelse ($callResponses as $item)
-                    <li class="list-group-item">
-                        {{$item->created_at}}
+                </li>
+{{-- Show Responses --}}
+            @forelse ($callResponses as $item)
+                <li class="list-group-item">
+                    Date : {{$item->created_at}}
+                    @if ($item->action == 'ticket opened')
+                        <span class="badge badge-info ml-lg-2 ml-md-2">{{$item->action}}</span>
+                    @else
                         <span class="badge badge-info ml-lg-2 ml-md-2">{{$item->action}}</span>
                         <span class="badge badge-info ml-lg-2 ml-md-2">{{$item->result}}</span>
-                    </li>
-                @empty
-                    <li class="list-group-item">
+                    @endif
+
+                </li>
+            @empty
+                <li class="list-group-item">
+
+                    @if ($RecievedCall->problem == '3')
+                        Installation<br>
+                    @elseif($RecievedCall->problem == '4')
+                        Software Dev<br>
+                    @else
                         there's no reponse yet for this call<br>
-                    </li>
-                @endforelse
+                    @endif
+                </li>
+            @endforelse
 
             </ul>
         </div>

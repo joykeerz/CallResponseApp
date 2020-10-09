@@ -50,15 +50,18 @@ Admin Dashboard | Recieved call
 
                     <h4 class="card-title">Job</h4>
                     <div class="form-group">
-                        <select class="form-control" name="cb_result">
+                        <select class="form-control" name="cb_job">
                             <option value="1">PM</option>
-                            <option value="2">CM</option>
+                            <option value="21">CM(Software)</option>
+                            <option value="22">CM(Hardware)</option>
+                            <option value="3">Installation</option>
+                            <option value="4">Software Development</option>
                         </select>
                     </div>
 
                     <h4 class="card-title">Description</h4>
                     <div class="form-group">
-                        <textarea class="form-control" rows="3" name="tb_problem"></textarea>
+                        <textarea class="form-control" rows="3" name="tb_desc"></textarea>
                     </div>
 
                     <h4 class="card-title">Ticket Number</h4>

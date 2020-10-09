@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,3 +44,18 @@ Route::post('/call/responses/add', 'ResponseController@createResponses')->name('
 Route::get('/call/responses/{id}/edit', 'ResponseController@editResponses')->name('editResponse');
 Route::put('/call/responses/{id}/', 'ResponseController@updateResponses')->name('updateResponse');
 Route::delete('/call/responses/{id}', 'ResponseController@deleteResponses')->name('deleteResponse');
+
+///Data
+//hardware
+Route::get('/hardware', 'HardwareController@index')->name('mainHardwareRoute');
+Route::get('/hardware/add', 'HardwareController@addHardware')->name('addHardwareRoute');
+Route::post('/hardware/add', 'HardwareController@createHardware')->name('createHardwareRoute');
+Route::get('/hardware/{id}/edit', 'HardwareController@editHardware')->name('editHardwareRoute');
+Route::put('/hardware/{id}/', 'HardwareController@updateHardware')->name('updateHardwareRoute');
+Route::delete('/hardware/{id}/', 'HardwareController@deleteHardware')->name('deleteHardwareRoute');
+//hardware type
+Route::get('/hardware/type/add', 'HardwareController@addHardwareType')->name('addHardwareTypeRoute');
+Route::post('/hardware/type/add', 'HardwareController@createHardwareType')->name('createHardwareTypeRoute');
+Route::get('/hardware/type/{id}/edit', 'HardwareController@editHardwareType')->name('editHardwareTypeRoute');
+Route::put('/hardware/type/{id}/', 'HardwareController@updateHardwareType')->name('updateHardwareTypeRoute');
+Route::delete('/hardware/type/{id}/', 'HardwareController@deleteHardwareType')->name('deleteHardwareTypeRoute');

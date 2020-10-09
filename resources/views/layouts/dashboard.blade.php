@@ -216,11 +216,25 @@
                                             class="hide-menu"> Call Recieves
                                         </span></a>
                                 </li>
-                                <li class="sidebar-item"><a href="{{ route('responseList') }}" class="sidebar-link"><span
+                                {{-- <li class="sidebar-item"><a href="#" class="sidebar-link"><span
                                             class="hide-menu"> Call responses
                                         </span></a>
-                                </li>
+                                </li> --}}
 
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                    class="hide-menu">Data</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                {{-- <li class="sidebar-item"><a href="{{ route('mainHardwareRoute') }}" class="sidebar-link"><span
+                                            class="hide-menu"> Software
+                                        </span></a>
+                                </li> --}}
+                                <li class="sidebar-item"><a href="{{ route('mainHardwareRoute') }}" class="sidebar-link"><span
+                                            class="hide-menu"> Hardware
+                                        </span></a>
+                                </li>
                             </ul>
                         </li>
                         <li class="list-divider"></li>

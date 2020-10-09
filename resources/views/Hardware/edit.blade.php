@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Admin Dashboard | Call Response
+Admin Dashboard | Hardware
 @endsection
 
 @section('user')
@@ -15,20 +15,40 @@ Admin Dashboard | Call Response
 @endsection
 
 @section('content')
-@if (session()->has('success'))
-    <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show"
-        role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <strong>Success - </strong> {{ session()->get('success') }}
-    </div>
-@endif
-<h4 class="card-title mt-5">Add response for this call</h4>
+<h4 class="card-title mt-5">Edit hardware</h4>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="card">
-            @livewire('response-form-wire', ['RecievedCall' => $RecievedCall])
+            <form action="{{ route('updateHardwareRoute',['id'=>$hardwares->hardware_id]) }}" method="post">
+                <div class="card-body">
+
+                    <h4 class="card-title">hardware name</h4>
+                    <div class="form-group">
+                        <input type="text" value="{{$hardwares->hardware_name}}" class="form-control" name="tb_hardware_name">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="cb_type"></label>
+                      <select class="form-control" name="cb_type" id="cb_type">
+                            <option disabled selected value="{{$hardwareType->hardware_type_id}}">{{$hardwareType->hardware_type_name}}</option>
+                          @forelse ($types as $type)
+                            <option value="{{$type->hardware_type_id}}">{{$type->hardware_type_name}}</option>
+                          @empty
+                            <option>please add atleast one hardware type first</option>
+                          @endforelse
+                      </select>
+                    </div>
+
+                    <button class="btn btn-labeled btn-primary float-right mb-3" type="submit">
+                        <span class="btn-label">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        Update
+                        @csrf
+                        <input type="hidden" name="_method" value="PUT">
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

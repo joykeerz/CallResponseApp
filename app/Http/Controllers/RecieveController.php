@@ -54,7 +54,8 @@ class RecieveController extends Controller
         $CallRecieve->location = $request->tb_location;
         $CallRecieve->equipment = $request->tb_equipment;
         $CallRecieve->idNumber = $request->tb_id_number;
-        $CallRecieve->problem = $request->tb_problem;
+        $CallRecieve->problem = $request->cb_job;
+        $CallRecieve->description = $request->tb_desc;
         $CallRecieve->ticket_number = $request->tb_ticket_number;
         $CallRecieve->save();
 
