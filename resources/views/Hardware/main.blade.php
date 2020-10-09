@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Admin Dashboard | hardware
+Admin Dashboard | Hardware
 @endsection
 
 @section('user')

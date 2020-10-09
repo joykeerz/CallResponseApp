@@ -35,15 +35,25 @@ Route::get('/call/recieves/{id}/show', 'RecieveController@callDetails')->name('c
 Route::get('/call/recieves/{id}/edit', 'RecieveController@editCalls')->name('editCall');
 Route::put('/call/recieves/{id}/', 'RecieveController@updateCalls')->name('updateCall');
 Route::delete('/call/recieves/{id}', 'RecieveController@deleteCalls')->name('deleteCall');
+
 //Call responses
+//response crud
 Route::get('/call/responses', 'ResponseController@dataResponses')->name('responseList');
-Route::post('/call/responses/open', 'ResponseController@openTicket')->name('openResponse');
-Route::put('/call/responses/{id}/close', 'ResponseController@closeTicket')->name('closeResponse');
 Route::get('/call/responses/{id}/add', 'ResponseController@addResponses')->name('addResponse');
 Route::post('/call/responses/add', 'ResponseController@createResponses')->name('createResponse');
 Route::get('/call/responses/{id}/edit', 'ResponseController@editResponses')->name('editResponse');
 Route::put('/call/responses/{id}/', 'ResponseController@updateResponses')->name('updateResponse');
 Route::delete('/call/responses/{id}', 'ResponseController@deleteResponses')->name('deleteResponse');
+
+//Open And Close ticket
+Route::post('/call/responses/open', 'ResponseController@openTicket')->name('openResponse');
+Route::put('/call/responses/{id}/close', 'ResponseController@closeTicket')->name('closeResponse');
+
+//detail response
+Route::get('/call/responses/{id}/detail/hardware', 'ResponseController@addResponsesDetailHardware')->name('addResDetailHard');
+Route::post('/call/responses/add/detail/hardware', 'ResponseController@createResponsesDetailHardware')->name('createResDetailHard');
+Route::get('/call/responses/{id}/detail/software', 'ResponseController@addResponsesDetailSoftware')->name('addResDetailSoft');
+Route::post('/call/responses/add/detail/software', 'ResponseController@createResponsesDetailSoftware')->name('createResDetailSoft');
 
 ///Data
 //hardware
@@ -53,6 +63,7 @@ Route::post('/hardware/add', 'HardwareController@createHardware')->name('createH
 Route::get('/hardware/{id}/edit', 'HardwareController@editHardware')->name('editHardwareRoute');
 Route::put('/hardware/{id}/', 'HardwareController@updateHardware')->name('updateHardwareRoute');
 Route::delete('/hardware/{id}/', 'HardwareController@deleteHardware')->name('deleteHardwareRoute');
+
 //hardware type
 Route::get('/hardware/type/add', 'HardwareController@addHardwareType')->name('addHardwareTypeRoute');
 Route::post('/hardware/type/add', 'HardwareController@createHardwareType')->name('createHardwareTypeRoute');

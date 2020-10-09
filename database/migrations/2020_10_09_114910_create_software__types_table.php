@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSoftwareTable extends Migration
+class CreateSoftwareTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateSoftwareTable extends Migration
      */
     public function up()
     {
-        Schema::create('software', function (Blueprint $table) {
-            $table->id('software_id');
-            $table->unsignedBigInteger('software_type_id');
-            $table->string('software_name');
+        Schema::create('software_types', function (Blueprint $table) {
+            $table->id('software_type_id');
+            $table->string('software_type_name');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateSoftwareTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('software');
+        Schema::dropIfExists('software__types');
     }
 }

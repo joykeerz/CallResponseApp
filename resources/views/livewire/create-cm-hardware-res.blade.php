@@ -24,6 +24,28 @@
                 </select>
             </div>
 
+                <h4 class="card-title">Hardware Type</h4>
+                <div class="form-group">
+                    <select class="form-control" name="cb_Hardware_type">
+                        @forelse ($HardwareTypes as $HardwareType)
+                            <option value="{{$HardwareType->hardware_type_id}}">{{$HardwareType->hardware_type_name}}</option>
+                        @empty
+                            <option> there's no hardware yet. please add hardware first</option>
+                        @endforelse
+                    </select>
+                </div>
+
+                <h4 class="card-title">Hardware</h4>
+                <div class="form-group">
+                    <select class="form-control" name="cb_hardwares">
+                        @forelse ($Hardwares as $Hardware)
+                        <option value="{{$Hardware->hardware_id}}">{{$Hardware->hardware_name}}</option>
+                        @empty
+                        <option> there's no hardware yet. please add hardware first</option>
+                        @endforelse
+                    </select>
+                </div>
+
             <h4 class="card-title">Description</h4>
             <div class="form-group">
                 <textarea class="form-control" rows="3" name="tb_desc"></textarea>

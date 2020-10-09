@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Hardware extends Model
+class Software_Type extends Model
 {
     //
-    protected $primaryKey = 'hardware_id';
 }
