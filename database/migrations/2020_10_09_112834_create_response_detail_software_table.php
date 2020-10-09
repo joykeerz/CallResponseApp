@@ -17,7 +17,6 @@ class CreateResponseDetailSoftwareTable extends Migration
             $table->id('response_detail_software_id');
             $table->unsignedBigInteger('response_id');
             $table->unsignedBigInteger('software_id');
-            $table->unsignedBigInteger('software_type_id');
             $table->timestamps();
         });
     }

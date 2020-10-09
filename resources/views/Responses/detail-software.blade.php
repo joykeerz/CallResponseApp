@@ -34,7 +34,7 @@ Admin Dashboard | Call Response
         <div class="card">
             {{-- @livewire('response-form-wire', ['RecievedCall' => $RecievedCall, 'Hardwares' => $Hardwares]) --}}
             <div>
-                <form action="{{ route('createResponse') }}" method="post">
+                <form action="{{ route('createResDetailSoft') }}" method="post">
                     <div class="card-body">
                         <input type="hidden" value="{{ Auth::user()->id }}" name="tb_user_id">
                         <input type="hidden" value="{{ $CallResponse->response_id }}" name="tb_response_id">

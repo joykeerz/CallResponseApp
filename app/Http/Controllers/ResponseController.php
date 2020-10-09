@@ -8,6 +8,7 @@ use App\CallResponse;
 use App\Customer;
 use App\Hardware;
 use App\hardware_type;
+use App\ResponseDetailHardware;
 use App\Software;
 use App\Software_Type;
 use Illuminate\Support\Facades\Auth;
@@ -27,17 +28,17 @@ class ResponseController extends Controller
         return view('Responses.create', ['RecievedCall' => $RecievedCall]);
     }
 
-    public function addResponsesDetailHardware($id)
+    public function addResponsesDetailHardware($id, $recieve_id)
     {
         $CallResponse = CallResponse::where('response_id', $id)->firstOrFail();
         $Hardwares = Hardware::all();
-        return view('Responses.detail-hardware', ['CallResponse' => $CallResponse, 'Wares' => $Hardwares]);
+        return view('Responses.detail-hardware', ['CallResponse' => $CallResponse, 'Wares' => $Hardwares, 'recieve_id' => $recieve_id]);
     }
-    public function addResponsesDetailSoftware($id)
+    public function addResponsesDetailSoftware($id, $recieve_id)
     {
         $CallResponse = CallResponse::where('response_id', $id)->firstOrFail();
         $Softwares = Software::all();
-        return view('Responses.detail-software', ['CallResponse' => $CallResponse, 'Wares' => $Softwares]);
+        return view('Responses.detail-software', ['CallResponse' => $CallResponse, 'Wares' => $Softwares, 'recieve_id' => $recieve_id]);
     }
 
     public function createResponses(Request $request)
@@ -52,9 +53,9 @@ class ResponseController extends Controller
 
         if ($request->cb_result == 'pending') {
             if ($request->tb_problem == '22') {
-                return redirect()->action('ResponseController@addResponsesDetailHardware', ['id' => $idCallResponse])->with('next', 'please fill the detail below');
+                return redirect()->action('ResponseController@addResponsesDetailHardware', ['id' => $idCallResponse, 'recieve_id' => $request->tb_recieve_id])->with('next', 'please fill the detail below');
             } elseif ($request->tb_problem == '21') {
-                return redirect()->action('ResponseController@addResponsesDetailSoftware', ['id' => $idCallResponse])->with('next', 'please fill the detail below');
+                return redirect()->action('ResponseController@addResponsesDetailSoftware', ['id' => $idCallResponse, 'recieve_id' => $request->tb_recieve_id])->with('next', 'please fill the detail below');
             } else {
                 return redirect()->back()->with('success', 'Created Successfuly');
             }
@@ -65,9 +66,17 @@ class ResponseController extends Controller
 
     public function createResponsesDetailHardware(Request $request)
     {
+        $recieve_id = $request->tb_recieve_id;
+        $detailHardware = new ResponseDetailHardware;
+        $detailHardware->response_id = $request->tb_response_id;
+        $detailHardware->hardware_id = $request->cb_hardwares;
+        $detailHardware->save();
+        return redirect()->route('callDetail', ['id' => $recieve_id])->with('success', 'Created Successfuly');
     }
     public function createResponsesDetailSoftware(Request $request)
     {
+        $recieve_id = $request->tb_recieve_id;
+        return redirect('callDetail', ['id' => $recieve_id])->with('success', 'Created Successfuly');
     }
 
     public function openTicket(Request $request)

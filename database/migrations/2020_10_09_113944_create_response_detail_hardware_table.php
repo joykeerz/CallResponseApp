@@ -17,7 +17,6 @@ class CreateResponseDetailHardwareTable extends Migration
             $table->id('response_detail_hardware_id');
             $table->unsignedBigInteger('response_id');
             $table->unsignedBigInteger('hardware_id');
-            $table->unsignedBigInteger('hardware_type_id');
             $table->timestamps();
         });
     }

@@ -50,9 +50,9 @@ Route::post('/call/responses/open', 'ResponseController@openTicket')->name('open
 Route::put('/call/responses/{id}/close', 'ResponseController@closeTicket')->name('closeResponse');
 
 //detail response
-Route::get('/call/responses/{id}/detail/hardware', 'ResponseController@addResponsesDetailHardware')->name('addResDetailHard');
+Route::get('/call/responses/{id}/detail/{recieve_id}/hardware', 'ResponseController@addResponsesDetailHardware')->name('addResDetailHard');
 Route::post('/call/responses/add/detail/hardware', 'ResponseController@createResponsesDetailHardware')->name('createResDetailHard');
-Route::get('/call/responses/{id}/detail/software', 'ResponseController@addResponsesDetailSoftware')->name('addResDetailSoft');
+Route::get('/call/responses/{id}/detail/{recieve_id}/software', 'ResponseController@addResponsesDetailSoftware')->name('addResDetailSoft');
 Route::post('/call/responses/add/detail/software', 'ResponseController@createResponsesDetailSoftware')->name('createResDetailSoft');
 
 ///Data
