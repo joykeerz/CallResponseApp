@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/dist/assets/images/favicon.png')}}">
-    <title>Adminmart Template - The Ultimate Multipurpose admin template</title>
+    <title>Welcome to CHMS</title>
     <!-- Custom CSS -->
     <link href="{{ asset('/dist/dist/css/style.min.css')}}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
