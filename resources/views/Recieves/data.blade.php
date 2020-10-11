@@ -47,11 +47,10 @@ Admin Dashboard | Recieved call
                 <thead>
                     <tr>
                         <th>no</th>
-                        <th>Name</th>
+                        <th>Customer</th>
                         <th>Location</th>
                         <th>Equipment</th>
                         <th>ID Number</th>
-                        <th>Problem</th>
                         <th>Ticket No</th>
                         <th>actions</th>
                     </tr>
@@ -67,14 +66,13 @@ Admin Dashboard | Recieved call
                         <td>{{$item->location}}</td>
                         <td>{{$item->equipment}}</td>
                         <td>{{$item->idNumber}}</td>
-                        <td>{{$item->problem}}</td>
                         <td>{{$item->ticket_number}}</td>
                         <td class="d-flex flex-row">
                             <a href="{{ route('editCall', ['id'=>$item->recieve_id]) }}" class="mr-2">
                                 <span class="btn btn-cyan btn-rounded icon-pencil"></span>
                             </a>
                             <a href="{{ route('callDetail', ['id'=>$item->recieve_id]) }}" class="mr-2">
-                                <span class="btn btn-primary btn-rounded  icon-call-in"></span>
+                                <span class="btn btn-primary btn-rounded  icon-magnifier"></span>
                             </a>
                             <form action="{{ route('deleteCall', ['id'=>$item->recieve_id]) }}" method="POST">
                                 <button type="submit" name="submit" class="btn btn-danger btn-rounded">
@@ -94,7 +92,6 @@ Admin Dashboard | Recieved call
                         <th>Location</th>
                         <th>Equipment</th>
                         <th>ID Number</th>
-                        <th>Problem</th>
                         <th>Ticket No</th>
                         <th>actions</th>
                     </tr>

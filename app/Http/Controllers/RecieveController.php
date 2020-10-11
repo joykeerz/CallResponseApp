@@ -92,36 +92,6 @@ class RecieveController extends Controller
                 'problem' => $request->tb_problem,
                 'ticket_number' => $request->tb_ticket_number,
             ));
-        // $RecievedCall = CallRecieve::where('recieve_id', '=', $id)->firstOrFail();
-        // $Customer = Customer::where('customer_id', '=', $RecievedCall->customer_id)->firstOrFail();
-        // if (!$RecievedCall) {
-        //     dd('data tidak ada');
-        // }
-
-        // $Customer->update(array(
-        //     'nama' => $request->tb_customer_name,
-        //     'contact_phone' => $request->tb_customer_contact,
-        // ));
-
-
-        // $RecievedCall->update(array(
-        //     'location' => $request->tb_location,
-        //     'equipment' => $request->tb_equipment,
-        //     'idNumber' => $request->tb_id_number,
-        //     'problem' => $request->tb_problem,
-        //     'ticket_number' => $request->tb_ticket_number,
-        // ));
-
-        // $Customer->nama = $request->tb_customer_name;
-        // $Customer->contact_phone = $request->tb_customer_contact;
-        // $Customer->save();
-
-        // $RecievedCall->location = $request->tb_location;
-        // $RecievedCall->equipment = $request->tb_equipment;
-        // $RecievedCall->idNumber = $request->tb_id_number;
-        // $RecievedCall->problem = $request->tb_problem;
-        // $RecievedCall->ticket_number = $request->tb_ticket_number;
-        // $RecievedCall->save();
 
         return redirect()->route('recieveList')->with('success', 'Updated Successfuly');
     }

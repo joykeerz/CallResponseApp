@@ -43,12 +43,18 @@ class ResponseController extends Controller
 
     public function createResponses(Request $request)
     {
+        if ($request->tb_problem == '21') {
+            return redirect()->route('callDetail', ['id' => $request->tb_recieve_id])->with('sorry', 'this feature is still in development');
+        }
+        $time = now();
         $idCallResponse = DB::table('call_responses')->insertGetId([
             'user_id' => Auth::user()->id,
             'recieve_id' => $request->tb_recieve_id,
             'action' => $request->cb_action,
             'result' => $request->cb_result,
             'description' => $request->tb_desc,
+            'created_at' => $time,
+            'updated_at' => $time,
         ]);
 
         if ($request->cb_result == 'pending') {
@@ -57,10 +63,10 @@ class ResponseController extends Controller
             } elseif ($request->tb_problem == '21') {
                 return redirect()->action('ResponseController@addResponsesDetailSoftware', ['id' => $idCallResponse, 'recieve_id' => $request->tb_recieve_id])->with('next', 'please fill the detail below');
             } else {
-                return redirect()->back()->with('success', 'Created Successfuly');
+                return redirect()->route('callDetail', ['id' => $request->tb_recieve_id])->with('success', 'Created Successfuly');
             }
         } else {
-            return redirect()->back()->with('success', 'Created Successfuly');
+            return redirect()->route('callDetail', ['id' => $request->tb_recieve_id])->with('success', 'Created Successfuly');
         }
     }
 
@@ -73,6 +79,7 @@ class ResponseController extends Controller
         $detailHardware->save();
         return redirect()->route('callDetail', ['id' => $recieve_id])->with('success', 'Created Successfuly');
     }
+
     public function createResponsesDetailSoftware(Request $request)
     {
         $recieve_id = $request->tb_recieve_id;

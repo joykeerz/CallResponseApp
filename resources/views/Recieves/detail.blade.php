@@ -15,6 +15,24 @@ Admin Dashboard | Recieved call
 @endsection
 
 @section('content')
+@if (session()->has('success'))
+    <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show"
+        role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Success - </strong> {{ session()->get('success') }}
+    </div>
+@endif
+@if (session()->has('sorry'))
+    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show"
+        role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Sorry - </strong> {{ session()->get('sorry') }}
+    </div>
+@endif
 <h4 class="card-title mt-5">Recieved call Details</h4>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
@@ -81,9 +99,6 @@ Admin Dashboard | Recieved call
                                 History
                             @else
                                 <a href="{{ route('addResponse',['id'=>$RecievedCall->recieve_id]) }}" class="badge badge-info">+</a>
-                                {{-- <a href="{{ route('closeResponse',['id'=>$RecievedCall->recieve_id]) }}" class="badge badge-success"> --}}
-                                    {{-- <i class="fa fa-check" aria-hidden="true"></i> --}}
-                                {{-- </a> --}}
                                 <form action="{{ route('closeResponse',['id'=>$RecievedCall->recieve_id]) }}" method="POST">
                                     <input type="hidden" name="_method" value="PUT">
                                     @csrf
@@ -115,7 +130,6 @@ Admin Dashboard | Recieved call
                 </li>
             @empty
                 <li class="list-group-item">
-
                     @if ($RecievedCall->problem == '3')
                         Installation<br>
                     @elseif($RecievedCall->problem == '4')
@@ -125,7 +139,6 @@ Admin Dashboard | Recieved call
                     @endif
                 </li>
             @endforelse
-
             </ul>
         </div>
     </div>
