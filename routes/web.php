@@ -28,9 +28,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 ///calls Route
 Route::get('/call', 'CallController@index')->name('mainCall');
 //Call recieves
+Route::get('/call/recieves/new', 'RecieveController@newCalls')->name('newCall');
+Route::post('/call/recieves/new', 'RecieveController@initNewCalls')->name('newCalls');
+Route::delete('/call/recieves/cancel/{id}', 'RecieveController@cancelCall')->name('cancelCalls');
+
 Route::get('/call/recieves', 'RecieveController@dataRecieve')->name('recieveList');
-Route::get('/call/recieves/add', 'RecieveController@addCalls')->name('addCall');
-Route::post('/call/recieves/add', 'RecieveController@createCalls')->name('createCall');
+Route::get('/call/recieves/add/{id}', 'RecieveController@addCalls')->name('addCall');
+Route::post('/call/recieves/add/{id}', 'RecieveController@createCalls')->name('createCall');
 Route::get('/call/recieves/{id}/show', 'RecieveController@callDetails')->name('callDetail');
 Route::get('/call/recieves/{id}/edit', 'RecieveController@editCalls')->name('editCall');
 Route::put('/call/recieves/{id}/', 'RecieveController@updateCalls')->name('updateCall');

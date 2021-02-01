@@ -231,10 +231,10 @@
                                             class="hide-menu"> Software
                                         </span></a>
                                 </li> --}}
-                                <li class="sidebar-item"><a href="{{ route('mainHardwareRoute') }}" class="sidebar-link"><span
+                                {{-- <li class="sidebar-item"><a href="{{ route('mainHardwareRoute') }}" class="sidebar-link"><span
                                             class="hide-menu"> Hardware
                                         </span></a>
-                                </li>
+                                </li> --}}
                                 <li class="sidebar-item"><a href="{{route('mainCustomerRoute')}}" class="sidebar-link"><span
                                     class="hide-menu"> Customer
                                     </span></a>

@@ -25,7 +25,7 @@ Admin Dashboard | Recieved call
 @endif
 
 <div class="card col-md-3 bg-dark text-white">
-            <a href="{{ route('addCall') }}">
+            <a href="{{ route('newCall') }}">
     <div class="card-body">
         <div class="d-flex d-lg-flex d-md-block align-items-center">
                 <h4 class="mt-lg-2 mt-2 font-weight-bold text-white">Add Call Recieve</h4>
@@ -81,7 +81,7 @@ Admin Dashboard | Recieved call
                                     <i class="fas fa-trash"></i>
                                 </button>
                             @csrf
-                                <input type="hidden" name="_method" value="DELETE">
+                            @method('DELETE')
                             </form>
                         </td>
                     </tr>

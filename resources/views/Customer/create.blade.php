@@ -38,7 +38,7 @@ Admin Dashboard | Customer
                           @forelse ($Bp as $B)
                             <option value="{{$B->bp_id}}">{{$B->bp_name}}</option>
                           @empty
-                            <option>please add atleast one business Partner type first</option>
+                            <option disabled value="none">please add atleast one business Partner type first</option>
                           @endforelse
                       </select>
                     </div>

@@ -19,43 +19,8 @@ Admin Dashboard | Recieved call
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="card">
-            <form action="{{ route('createCall') }}" method="post">
-                <div class="card-body">
-
-                    <h4 class="card-title">Select Customer</h4>
-                    <div class="form-group d-flex justify-content-between">
-                        {{-- <input type="text" class="form-control" name="tb_customer_name"> --}}
-                        <input type="hidden" value="{{ Auth::user()->id }}" name="tb_user_id">
-                        <select class="form-control mr-2" name="cb_customer_name">
-                            @forelse (App\Customer::all() as $c)
-                                <option value="{{$c->customer_id}}">{{$c->nama}}</option>
-                            @empty
-                                <option value="none" disabled>please insert customer first</option>
-                            @endforelse
-                        </select>
-                        or
-                        <a class="btn btn-success ml-2" href="#" >New</a>
-                    </div>
-
-                    <h4 class="card-title">Serial Number</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="tb_id_number">
-                    </div>
-
-                    <h4 class="card-title">Contact person</h4>
-                    <div class="form-group">
-                        <input type="text" placeholder="Phone" class="form-control mt-1" name="tb_contact">
-                    </div>
-
-                    <h4 class="card-title">Location</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="tb_location">
-                    </div>
-
-                    <h4 class="card-title">Equipment</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="tb_equipment">
-                    </div>
+            <div class="card-body">
+                <form action="{{ route('createCall',['id'=>$id]) }}" method="post">
 
                     <h4 class="card-title">Job</h4>
                     <div class="form-group">
@@ -79,14 +44,47 @@ Admin Dashboard | Recieved call
                     </div>
 
                     <button class="btn btn-labeled btn-primary float-right mb-3" type="submit">
+                        <input type="hidden" value="{{$data->machine_location}}" name="tb_location">
+                        <input type="hidden" value="{{$data->machine_equipment}}" name="tb_equipment">
+                        <input type="hidden" value="{{$data->recieve_id}}" name="tb_recieve_id">
                         <span class="btn-label">
                             <i class="fa fa-check"></i>
                         </span>
                         Add
                         @csrf
                     </button>
-                </div>
-            </form>
+                </form>
+                <form action="{{ route('cancelCalls', ['id'=>$data->recieve_id]) }}" method="POST">
+                    <button type="submit" name="submit" class="btn btn-danger">
+                        <span>Cancel</span>
+                    </button>
+                @csrf
+                @method('DELETE')
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Customer Info</h4>
+            </div>
+            <div class="card-body">
+                <span><h5><b>Name : </b></h5><p>{{$data->nama}}</p></span>
+                <span><h5><b>Contact : </b></h5><p>{{$data->contact_phone}}</p></span>
+                <span><h5><b>Business Partner : </b></h5><p>{{$data->bp_name}}</p></span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">ID Machine Info</h4>
+            </div>
+            <div class="card-body">
+                <span><h5><b>Serial : </b></h5><p>{{$data->machine_serial}}</p></span>
+                <span><h5><b>Location : </b></h5><p>{{$data->machine_location}}</p></span>
+                <span><h5><b>Equipment : </b></h5><p>{{$data->machine_equipment}}</p></span>
+                <span><h5><b>Service partner : </b></h5><p>{{$data->sp_name}}</p></span>
+            </div>
         </div>
     </div>
 </div>

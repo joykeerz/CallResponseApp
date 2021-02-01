@@ -15,16 +15,16 @@ class CreateCallRecievesTable extends Migration
     {
         Schema::create('call_recieves', function (Blueprint $table) {
             $table->id('recieve_id');
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('user_id');
             // $table->foreign('customer_id')->references('id')->on('customers');
             // $table->foreign('user_id')->references('id')->on('users');
-            $table->string('location', 50);
-            $table->string('equipment', 20);
-            $table->string('idNumber', 50);
-            $table->text('problem', 3);
-            $table->text('description', 255);
-            $table->string('ticket_number', 10);
+            $table->string('location', 50)->nullable();
+            $table->string('equipment', 20)->nullable();
+            $table->string('idNumber', 50)->nullable();
+            $table->text('problem', 3)->nullable();
+            $table->text('description', 255)->nullable();
+            $table->string('ticket_number', 10)->nullable();
             $table->string('is_responded', 1)->default('0');
             $table->timestamps();
         });

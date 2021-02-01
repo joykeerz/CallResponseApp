@@ -29,10 +29,15 @@ Admin Dashboard | Recieved call
     <strong>Sorry - </strong> {{ session()->get('sorry') }}
 </div>
 @endif
-<h4 class="card-title mt-5">Recieved call Details</h4>
+<h4 class="card-title mt-5">Recieved call Details
+    <a href="{{route('recieveList')}}" class="btn btn-danger">
+        <span>Back</span>
+    </a>
+</h4>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="card border-dark">
+
             <div class="card-header bg-dark">
                 <h4 class="mb-0 text-white">Call Info</h4>
             </div>

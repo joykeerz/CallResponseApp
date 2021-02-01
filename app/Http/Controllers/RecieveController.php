@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\CallRecieve;
 use App\CallResponse;
 use App\Customer;
+use App\Machine;
 use App\ResponseChain;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -35,43 +36,89 @@ class RecieveController extends Controller
         return view('Recieves.detail', ['RecievedCall' => $RecievedCall, 'callResponses' => $callResponses, 'Customer' => $Customer]);
     }
 
-    public function addCalls()
+    public function newCalls()
     {
-        return view('Recieves.create');
+        return view('Recieves.new');
+    }
+
+    public function initNewCalls(Request $request)
+    {
+        $validated = $request->validate([
+            'cb_customer' => 'required',
+            'tb_serial_number' => 'required',
+        ]);
+        $machine = Machine::where('machine_serial', 'LIKE', '%' . $request->tb_serial_number . '%')->first();
+        if ($machine) {
+            $id = DB::table('call_recieves')->insertGetId([
+                'user_id' => Auth::user()->id,
+                'customer_id' => $request->cb_customer,
+                'idNumber' => $request->tb_serial_number,
+                'created_at' => now(),
+            ]);
+            return redirect()->route('addCall', ['id' => $id]);
+        } else {
+            return redirect()->back()->with('alert', 'Machine Serial Not Found');
+        }
+    }
+
+    public function cancelCall($id)
+    {
+        CallRecieve::where('recieve_id', $id)->delete();
+        return redirect()->route('newCall')->with('alert', 'Call Cancelled');
+    }
+
+    public function addCalls($id)
+    {
+        $data = DB::table('call_recieves')
+            ->join('customers', 'call_recieves.customer_id', '=', 'customers.customer_id')
+            ->join('machines', 'call_recieves.idNumber', '=', 'machines.machine_serial')
+            ->join('bps', 'customers.bp_id', '=', 'bps.bp_id')
+            ->join('sps', 'machines.sp_id', '=', 'sps.sp_id')
+            ->select('customers.*', 'machines.*', 'call_recieves.*', 'bps.*', 'sps.*')
+            ->where('recieve_id', $id)
+            ->first();
+        // dd($data);
+        return view('Recieves.create', ['id' => $id, 'data' => $data]);
     }
 
     public function createCalls(Request $request)
     {
-        $idCustomer = DB::table('customers')->insertGetId(
-            [
-                'nama' => $request->cb_customer_name,
-                'contact_phone' => $request->tb_contact
-            ]
-        );
-
-        $CallRecieve = new CallRecieve;
-        $CallRecieve->customer_id = $idCustomer;
-        $CallRecieve->user_id = $request->tb_user_id;
-        $CallRecieve->location = $request->tb_location;
-        $CallRecieve->equipment = $request->tb_equipment;
-        $CallRecieve->idNumber = $request->tb_id_number;
-        $CallRecieve->problem = $request->cb_job;
-        $CallRecieve->description = $request->tb_desc;
-        $CallRecieve->ticket_number = $request->tb_ticket_number;
-        $CallRecieve->save();
-
+        // $CallRecieve = CallRecieve::where('recieve_id', $request->tb_recieve_id);
+        // $CallRecieve->location = $request->tb_location;
+        // $CallRecieve->equipment = $request->tb_equipment;
+        // $CallRecieve->problem = $request->cb_job;
+        // $CallRecieve->description = $request->tb_desc;
+        // $CallRecieve->ticket_number = $request->tb_ticket_number;
+        // $CallRecieve->save();
+        DB::table('call_recieves')
+            ->where('recieve_id', $request->tb_recieve_id)
+            ->update(array(
+                'location' => $request->tb_location,
+                'equipment' => $request->tb_equipment,
+                'problem' => $request->cb_job,
+                'description' => $request->tb_desc,
+                'ticket_number' => $request->tb_ticket_number,
+                'updated_at' => now(),
+            ));
         return redirect()->route('recieveList')->with('success', 'Created Successfuly');
     }
 
     public function editCalls($id)
     {
-        $RecievedCall = CallRecieve::where('recieve_id', '=', $id)->firstOrFail();
-        $Customer = Customer::where('customer_id', '=', $RecievedCall->customer_id)->firstOrFail();
-
-        if (!$RecievedCall) {
+        // $RecievedCall = CallRecieve::where('recieve_id', '=', $id)->firstOrFail();
+        // $Customer = Customer::where('customer_id', '=', $RecievedCall->customer_id)->firstOrFail();
+        $data = DB::table('call_recieves')
+            ->join('customers', 'call_recieves.customer_id', '=', 'customers.customer_id')
+            ->join('machines', 'call_recieves.idNumber', '=', 'machines.machine_serial')
+            ->join('bps', 'customers.bp_id', '=', 'bps.bp_id')
+            ->join('sps', 'machines.sp_id', '=', 'sps.sp_id')
+            ->select('customers.*', 'machines.*', 'call_recieves.*', 'bps.*', 'sps.*')
+            ->where('recieve_id', $id)
+            ->first();
+        if (!$data) {
             dd('data tidak ada');
         }
-        return view('Recieves.edit', ['RecievedCall' => $RecievedCall, 'Customer' => $Customer]);
+        return view('Recieves.edit', ['data' => $data]);
     }
 
     public function updateCalls(Request $request, $id)

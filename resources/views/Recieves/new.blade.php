@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Admin Dashboard | ID Machine
+Admin Dashboard | Recieved call
 @endsection
 
 @section('user')
@@ -15,7 +15,7 @@ Admin Dashboard | ID Machine
 @endsection
 
 @section('content')
-<h4 class="card-title mt-5">Add new ID Machine</h4>
+<h4 class="card-title mt-5">Add new Call</h4>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         @if ($errors->any())
@@ -27,45 +27,49 @@ Admin Dashboard | ID Machine
                 </ul>
             </div>
         @endif
+        @if (session()->has('alert'))
+            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show"
+                role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Alert - </strong> {{ session()->get('alert') }}
+            </div>
+         @endif
         <div class="card">
-            <form action="{{ route('createMachineRoute') }}" method="post">
-                <div class="card-body">
-
-                    <h4 class="card-title">Machine Serial</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="tb_serial" placeholder="Insert machine id here" value="{{ old('tb_serial') }}">
+            <div class="card-body">
+                <form action="{{route('newCalls')}}" method="post">
+                    <h4 class="card-title">Select Customer</h4>
+                    <div class="form-group d-flex justify-content-between">
+                        <input type="hidden" value="{{ Auth::user()->id }}" name="tb_user_id">
+                        <select class="form-control mr-2" name="cb_customer">
+                            @forelse (App\Customer::all() as $c)
+                                <option value="{{$c->customer_id}}">{{$c->nama}}</option>
+                            @empty
+                                <option value="none" disabled>please insert customer first</option>
+                            @endforelse
+                        </select>
+                        or
+                        <a class="btn btn-success ml-2" href="{{route('mainCustomerRoute')}}" >New</a>
                     </div>
 
-                    <h4 class="card-title">Location</h4>
+                    <h4 class="card-title">Serial Number</h4>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="tb_location" placeholder="Ex. jl mangga dua, kemanggisan. jakarta"  value="{{ old('tb_location') }}">
-                    </div>
-
-                    <h4 class="card-title">Equipment</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="tb_equipment" placeholder="Insert machine's equipment here"  value="{{ old('tb_equipment') }}">
-                    </div>
-
-                    <h4 class="card-title">Select SP</h4>
-                    <div class="form-group">
-                      <select class="form-control" name="cb_sp" id="cb_sp">
-                          @forelse ($sp as $s)
-                            <option value="{{$s->sp_id}}">{{$s->sp_name}}</option>
-                          @empty
-                            <option disabled value="none">please add atleast one Service Partner type first</option>
-                          @endforelse
-                      </select>
+                        <input type="text" class="form-control" name="tb_serial_number">
                     </div>
 
                     <button class="btn btn-labeled btn-primary float-right mb-3" type="submit">
                         <span class="btn-label">
                             <i class="fa fa-check"></i>
                         </span>
-                        Add
+                        next
                         @csrf
                     </button>
-                </div>
-            </form>
+                </form>
+                <a href="{{route('recieveList')}}" class="btn btn-danger">
+                    <span>Back</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
