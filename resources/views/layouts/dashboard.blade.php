@@ -166,7 +166,7 @@
                                         class="svg-icon"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
+                                <a class="dropdown-item" href="{{ route('profileRoute') }}"><i data-feather="user"
                                         class="svg-icon mr-2 ml-1"></i>
                                     My Profile</a>
                                 <a class="dropdown-item" href="javascript:void(0)"><i data-feather="settings"
@@ -234,6 +234,22 @@
                                 <li class="sidebar-item"><a href="{{ route('mainHardwareRoute') }}" class="sidebar-link"><span
                                             class="hide-menu"> Hardware
                                         </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="{{route('mainCustomerRoute')}}" class="sidebar-link"><span
+                                    class="hide-menu"> Customer
+                                    </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="{{route('mainBpRoute')}}" class="sidebar-link"><span
+                                    class="hide-menu"> BP
+                                    </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="{{route('mainSpRoute')}}" class="sidebar-link"><span
+                                    class="hide-menu"> SP
+                                    </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                    class="hide-menu"> ID Machine
+                                    </span></a>
                                 </li>
                             </ul>
                         </li>

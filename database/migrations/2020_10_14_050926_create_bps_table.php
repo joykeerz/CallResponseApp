@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomersTable extends Migration
+class CreateBpsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
-            $table->id('customer_id');
-            $table->unsignedBigInteger('bp_id')->nullable();
-            $table->string('nama', 30);
-            $table->string('contact_phone', 30);
+        Schema::create('bps', function (Blueprint $table) {
+            $table->id('bp_id');
+            $table->string('bp_name');
+            $table->string('bp_contact');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('bps');
     }
 }

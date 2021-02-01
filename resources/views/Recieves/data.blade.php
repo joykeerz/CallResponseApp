@@ -52,6 +52,7 @@ Admin Dashboard | Recieved call
                         <th>Equipment</th>
                         <th>ID Number</th>
                         <th>Ticket No</th>
+                        <th>Date</th>
                         <th>actions</th>
                     </tr>
                 </thead>
@@ -67,6 +68,7 @@ Admin Dashboard | Recieved call
                         <td>{{$item->equipment}}</td>
                         <td>{{$item->idNumber}}</td>
                         <td>{{$item->ticket_number}}</td>
+                        <td>now {{$item->created_at}}</td>
                         <td class="d-flex flex-row">
                             <a href="{{ route('editCall', ['id'=>$item->recieve_id]) }}" class="mr-2">
                                 <span class="btn btn-cyan btn-rounded icon-pencil"></span>
@@ -93,6 +95,7 @@ Admin Dashboard | Recieved call
                         <th>Equipment</th>
                         <th>ID Number</th>
                         <th>Ticket No</th>
+                        <th>Date</th>
                         <th>actions</th>
                     </tr>
                 </tfoot>

@@ -70,3 +70,32 @@ Route::post('/hardware/type/add', 'HardwareController@createHardwareType')->name
 Route::get('/hardware/type/{id}/edit', 'HardwareController@editHardwareType')->name('editHardwareTypeRoute');
 Route::put('/hardware/type/{id}/', 'HardwareController@updateHardwareType')->name('updateHardwareTypeRoute');
 Route::delete('/hardware/type/{id}/', 'HardwareController@deleteHardwareType')->name('deleteHardwareTypeRoute');
+
+
+//customer
+Route::get('/customer', 'CustomerController@index')->name('mainCustomerRoute');
+Route::get('/customer/add', 'CustomerController@addCustomer')->name('addCustomerRoute');
+Route::post('/customer/add', 'CustomerController@createCustomer')->name('createCustomerRoute');
+Route::get('/customer/{id}/edit', 'CustomerController@editCustomer')->name('editCustomerRoute');
+Route::put('/customer/{id}/', 'CustomerController@updateCustomer')->name('updateCustomerRoute');
+Route::delete('/customer/{id}/', 'CustomerController@deleteCustomer')->name('deleteCustomerRoute');
+
+//bp
+Route::get('/bp', 'BpController@index')->name('mainBpRoute');
+Route::get('/bp/add', 'BpController@addBp')->name('addBpRoute');
+Route::post('/bp/add', 'BpController@createBp')->name('createBpRoute');
+Route::get('/bp/{id}/edit', 'BpController@editBp')->name('editBpRoute');
+Route::put('/bp/{id}/', 'BpController@updateBp')->name('updateBpRoute');
+Route::delete('/bp/{id}/', 'BpController@deleteBp')->name('deleteBpRoute');
+
+//sp
+Route::get('/sp', 'SpController@index')->name('mainSpRoute');
+Route::get('/sp/add', 'SpController@addSp')->name('addSpRoute');
+Route::post('/sp/add', 'SpController@createSp')->name('createSpRoute');
+Route::get('/sp/{id}/edit', 'SpController@editSp')->name('editSpRoute');
+Route::put('/sp/{id}/', 'SpController@updateSp')->name('updateSpRoute');
+Route::delete('/sp/{id}/', 'SpController@deleteSp')->name('deleteSpRoute');
+
+///profile and utilities
+//profile
+Route::get('/profile', 'profileController@index')->name('profileRoute');

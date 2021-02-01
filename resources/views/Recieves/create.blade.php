@@ -22,15 +22,29 @@ Admin Dashboard | Recieved call
             <form action="{{ route('createCall') }}" method="post">
                 <div class="card-body">
 
-                    <h4 class="card-title">Customer Name</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="tb_customer_name">
+                    <h4 class="card-title">Select Customer</h4>
+                    <div class="form-group d-flex justify-content-between">
+                        {{-- <input type="text" class="form-control" name="tb_customer_name"> --}}
                         <input type="hidden" value="{{ Auth::user()->id }}" name="tb_user_id">
+                        <select class="form-control mr-2" name="cb_customer_name">
+                            @forelse (App\Customer::all() as $c)
+                                <option value="{{$c->customer_id}}">{{$c->nama}}</option>
+                            @empty
+                                <option value="none" disabled>please insert customer first</option>
+                            @endforelse
+                        </select>
+                        or
+                        <a class="btn btn-success ml-2" href="#" >New</a>
                     </div>
 
-                    <h4 class="card-title">Customer Contact</h4>
+                    <h4 class="card-title">Serial Number</h4>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="tb_customer_contact">
+                        <input type="text" class="form-control" name="tb_id_number">
+                    </div>
+
+                    <h4 class="card-title">Contact person</h4>
+                    <div class="form-group">
+                        <input type="text" placeholder="Phone" class="form-control mt-1" name="tb_contact">
                     </div>
 
                     <h4 class="card-title">Location</h4>
@@ -41,11 +55,6 @@ Admin Dashboard | Recieved call
                     <h4 class="card-title">Equipment</h4>
                     <div class="form-group">
                         <input type="text" class="form-control" name="tb_equipment">
-                    </div>
-
-                    <h4 class="card-title">ID Number</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="tb_id_number">
                     </div>
 
                     <h4 class="card-title">Job</h4>

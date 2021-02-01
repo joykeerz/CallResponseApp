@@ -44,12 +44,23 @@ Admin Dashboard | Call Response
                             <input type="hidden" value="{{ $RecievedCall->problem }}" name="tb_problem">
                         </div>
 
+                        <h4 class="card-title">Job Card Number</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control ">
+                        </div>
+
                         <h4 class="card-title">Action Taken</h4>
                         <div class="form-group">
                             <select class="form-control" name="cb_action">
                                 <option>guide by phone</option>`
                                 <option>Site Visit</option>
                             </select>
+                        </div>
+
+
+                        <h4 class="card-title">Engineer Name</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control ">
                         </div>
 
                         <h4 class="card-title">Result</h4>

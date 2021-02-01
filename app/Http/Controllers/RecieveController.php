@@ -8,6 +8,7 @@ use App\CallResponse;
 use App\Customer;
 use App\ResponseChain;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class RecieveController extends Controller
 {
@@ -43,8 +44,8 @@ class RecieveController extends Controller
     {
         $idCustomer = DB::table('customers')->insertGetId(
             [
-                'nama' => $request->tb_customer_name,
-                'contact_phone' => $request->tb_customer_contact
+                'nama' => $request->cb_customer_name,
+                'contact_phone' => $request->tb_contact
             ]
         );
 
@@ -99,8 +100,6 @@ class RecieveController extends Controller
     public function deleteCalls($id)
     {
         DB::table('call_recieves')->where('recieve_id', '=', $id)->delete();
-        // $RecievedCall = CallRecieve::where('recieve_id', '=', $id)->firstOrFail();
-        // $RecievedCall->delete();
         return redirect()->route('recieveList')->with('success', 'Deleted Successfuly');
     }
 }
