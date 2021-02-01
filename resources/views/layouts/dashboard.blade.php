@@ -247,7 +247,7 @@
                                     class="hide-menu"> SP
                                     </span></a>
                                 </li>
-                                <li class="sidebar-item"><a href="#" class="sidebar-link"><span
+                                <li class="sidebar-item"><a href="{{route('mainMachineRoute')}}" class="sidebar-link"><span
                                     class="hide-menu"> ID Machine
                                     </span></a>
                                 </li>

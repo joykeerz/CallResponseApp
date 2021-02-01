@@ -96,6 +96,14 @@ Route::get('/sp/{id}/edit', 'SpController@editSp')->name('editSpRoute');
 Route::put('/sp/{id}/', 'SpController@updateSp')->name('updateSpRoute');
 Route::delete('/sp/{id}/', 'SpController@deleteSp')->name('deleteSpRoute');
 
+//machine
+Route::get('/idmachine', 'MachineController@index')->name('mainMachineRoute');
+Route::get('/idmachine/add', 'MachineController@addMachine')->name('addMachineRoute');
+Route::post('/idmachine/add', 'MachineController@createMachine')->name('createMachineRoute');
+Route::get('/idmachine/{id}/edit', 'MachineController@editMachine')->name('editMachineRoute');
+Route::put('/idmachine/{id}/', 'MachineController@updateMachine')->name('updateMachineRoute');
+Route::delete('/idmachine/{id}/', 'MachineController@deleteMachine')->name('deleteMachineRoute');
+
 ///profile and utilities
 //profile
 Route::get('/profile', 'profileController@index')->name('profileRoute');
