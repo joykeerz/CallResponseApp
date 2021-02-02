@@ -29,7 +29,11 @@ Admin Dashboard | Recieved call
     <div class="card-body">
         <div class="d-flex d-lg-flex d-md-block align-items-center">
             <div>
-                <h4 class="mt-lg-2 mt-2 font-weight-medium text-white">Add Call Recieve</h4>
+                <h4 class="mt-lg-2 mt-2 font-weight-medium text-white">Add Call Recieve
+                    <a href="{{ url()->previous() }}" class="btn btn-danger">
+                        <span>Back</span>
+                    </a>
+                </h4>
             </div>
             <div class="ml-auto mt-md-3 mt-lg-0">
                     <span class="opacity-7 text-muted"><i data-feather="plus" class="feather-icon"></i></span>

@@ -23,7 +23,7 @@ class RecieveController extends Controller
         $dataCallRecieve = DB::table('call_recieves')
             ->join('customers', 'call_recieves.customer_id', '=', 'customers.customer_id')
             ->join('users', 'call_recieves.user_id', '=', 'users.id')
-            ->select('call_recieves.*', 'users.*', 'customers.*')
+            ->select('call_recieves.*', 'users.*', 'customers.*', 'call_recieves.created_at AS inputdate')
             ->get();
         return view('Recieves.data', ['calls' => $dataCallRecieve, 'no' => 0]);
     }
@@ -48,7 +48,7 @@ class RecieveController extends Controller
             'cb_customer' => 'required',
             'tb_serial_number' => 'required',
         ]);
-        $machine = Machine::where('machine_serial', 'LIKE', '%' . $request->tb_serial_number . '%')->first();
+        $machine = Machine::where('idmachine', 'LIKE', '%' . $request->tb_serial_number . '%')->first();
         if ($machine) {
             $id = DB::table('call_recieves')->insertGetId([
                 'user_id' => Auth::user()->id,
@@ -72,25 +72,17 @@ class RecieveController extends Controller
     {
         $data = DB::table('call_recieves')
             ->join('customers', 'call_recieves.customer_id', '=', 'customers.customer_id')
-            ->join('machines', 'call_recieves.idNumber', '=', 'machines.machine_serial')
+            ->join('machines', 'call_recieves.idNumber', '=', 'machines.idmachine')
             ->join('bps', 'customers.bp_id', '=', 'bps.bp_id')
             ->join('sps', 'machines.sp_id', '=', 'sps.sp_id')
             ->select('customers.*', 'machines.*', 'call_recieves.*', 'bps.*', 'sps.*')
             ->where('recieve_id', $id)
             ->first();
-        // dd($data);
         return view('Recieves.create', ['id' => $id, 'data' => $data]);
     }
 
     public function createCalls(Request $request)
     {
-        // $CallRecieve = CallRecieve::where('recieve_id', $request->tb_recieve_id);
-        // $CallRecieve->location = $request->tb_location;
-        // $CallRecieve->equipment = $request->tb_equipment;
-        // $CallRecieve->problem = $request->cb_job;
-        // $CallRecieve->description = $request->tb_desc;
-        // $CallRecieve->ticket_number = $request->tb_ticket_number;
-        // $CallRecieve->save();
         DB::table('call_recieves')
             ->where('recieve_id', $request->tb_recieve_id)
             ->update(array(
@@ -110,7 +102,7 @@ class RecieveController extends Controller
         // $Customer = Customer::where('customer_id', '=', $RecievedCall->customer_id)->firstOrFail();
         $data = DB::table('call_recieves')
             ->join('customers', 'call_recieves.customer_id', '=', 'customers.customer_id')
-            ->join('machines', 'call_recieves.idNumber', '=', 'machines.machine_serial')
+            ->join('machines', 'call_recieves.idNumber', '=', 'machines.idmachine')
             ->join('bps', 'customers.bp_id', '=', 'bps.bp_id')
             ->join('sps', 'machines.sp_id', '=', 'sps.sp_id')
             ->select('customers.*', 'machines.*', 'call_recieves.*', 'bps.*', 'sps.*')
@@ -124,21 +116,11 @@ class RecieveController extends Controller
 
     public function updateCalls(Request $request, $id)
     {
-        $RecievedCall = CallRecieve::where('recieve_id', '=', $id)->firstOrFail();
-        DB::table('customers')
-            ->where('customer_id', $RecievedCall->customer_id)
-            ->update(array(
-                'nama' => $request->tb_customer_name,
-                'contact_phone' => $request->tb_customer_contact,
-            ));
-
         DB::table('call_recieves')
             ->where('recieve_id', $id)
             ->update(array(
-                'location' => $request->tb_location,
-                'equipment' => $request->tb_equipment,
-                'idNumber' => $request->tb_id_number,
-                'problem' => $request->tb_problem,
+                'description' => $request->tb_desc,
+                'problem' => $request->cb_job,
                 'ticket_number' => $request->tb_ticket_number,
             ));
 

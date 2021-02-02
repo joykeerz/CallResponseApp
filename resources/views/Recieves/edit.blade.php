@@ -66,9 +66,9 @@ Admin Dashboard | Recieved call
                         @csrf
                     </button>
                 </form>
-                    <a href="{{route('recieveList')}}" class="btn btn-danger">
-                        <span>Cancel</span>
-                    </a>
+                <a href="{{ url()->previous() }}" class="btn btn-danger">
+                    <span>Back</span>
+                </a>
             </div>
         </div>
     </div>

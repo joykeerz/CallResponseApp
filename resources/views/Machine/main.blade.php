@@ -56,6 +56,7 @@ Admin Dashboard | ID Machine
                         <tr>
                             <th>no</th>
                             <th>Serial Number</th>
+                            <th>ID Machine</th>
                             <th>Location</th>
                             <th>Equipment</th>
                             <th>SP</th>
@@ -70,6 +71,7 @@ Admin Dashboard | ID Machine
                             @endphp
                             <td>{{$no}}</td>
                             <td>{{$m->machine_serial}}</td>
+                            <td>{{$m->idmachine}}</td>
                             <td>{{$m->machine_location}}</td>
                             <td>{{$m->machine_equipment}}</td>
                             <td>{{$m->sp_name}}</td>
@@ -96,6 +98,7 @@ Admin Dashboard | ID Machine
                         <tr>
                             <th>no</th>
                             <th>Serial Number</th>
+                            <th>ID Machine</th>
                             <th>Location</th>
                             <th>Equipment</th>
                             <th>SP</th>

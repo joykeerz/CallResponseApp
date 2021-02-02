@@ -39,7 +39,11 @@ Admin Dashboard | Recieved call
 
 <div class="card text-dark bg-white">
     <div class="card-header">
-        <h4 class="mb-0 text-dark"></h4>
+        <h4 class="mb-0 text-dark">
+            <a href="{{ url()->previous() }}" class="btn btn-danger">
+                <span>Back</span>
+            </a>
+        </h4>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -48,11 +52,10 @@ Admin Dashboard | Recieved call
                     <tr>
                         <th>no</th>
                         <th>Customer</th>
-                        <th>Location</th>
-                        <th>Equipment</th>
-                        <th>ID Number</th>
+                        <th>ID Machine</th>
                         <th>Ticket No</th>
-                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Time</th>
                         <th>actions</th>
                     </tr>
                 </thead>
@@ -64,11 +67,14 @@ Admin Dashboard | Recieved call
                         @endphp
                         <td>{{$no}}</td>
                         <td>{{$item->nama}}</td>
-                        <td>{{$item->location}}</td>
-                        <td>{{$item->equipment}}</td>
                         <td>{{$item->idNumber}}</td>
                         <td>{{$item->ticket_number}}</td>
-                        <td>now {{$item->created_at}}</td>
+                        <td>@if ($item->is_responded == 1)
+                            Closed
+                        @else
+                            on-going
+                        @endif</td>
+                        <td>{{\Carbon\Carbon::parse($item->inputdate)->diffForHumans()}}</td>
                         <td class="d-flex flex-row">
                             <a href="{{ route('editCall', ['id'=>$item->recieve_id]) }}" class="mr-2">
                                 <span class="btn btn-cyan btn-rounded icon-pencil"></span>
@@ -83,22 +89,14 @@ Admin Dashboard | Recieved call
                             @csrf
                             @method('DELETE')
                             </form>
+
+                            <a href="{{ route('callDetail', ['id'=>$item->recieve_id]) }}" class="mr-2">
+                                <span class="btn btn-primary ml-1">Request Sparepart</span>
+                            </a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>no</th>
-                        <th>Name</th>
-                        <th>Location</th>
-                        <th>Equipment</th>
-                        <th>ID Number</th>
-                        <th>Ticket No</th>
-                        <th>Date</th>
-                        <th>actions</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>

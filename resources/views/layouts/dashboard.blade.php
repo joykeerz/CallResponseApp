@@ -98,14 +98,14 @@
                                 id="bell" role="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
                                 <span><i data-feather="bell" class="svg-icon"></i></span>
-                                <span class="badge badge-primary notify-no rounded-circle">1</span>
+                                <span class="badge badge-primary notify-no rounded-circle"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">
                                 <ul class="list-style-none">
                                     <li>
                                         <div class="message-center notifications position-relative">
                                             <!-- Message -->
-                                            <a href="javascript:void(0)"
+                                            {{-- <a href="javascript:void(0)"
                                                 class="message-item d-flex align-items-center border-bottom px-3 py-2">
                                                 <div class="btn btn-danger rounded-circle btn-circle"><i
                                                         data-feather="airplay" class="text-white"></i></div>
@@ -116,7 +116,7 @@
                                                         admin!</span>
                                                     <span class="font-12 text-nowrap d-block text-muted">9:30 AM</span>
                                                 </div>
-                                            </a>
+                                            </a> --}}
                                             <!-- Message -->
                                         </div>
                                     </li>
@@ -320,7 +320,7 @@
             <!-- ============================================================== -->
             <footer class="footer text-center text-muted">
                 All Rights Reserved by . Designed and Developed by <a
-                    href="#">Joy</a>.
+                    href="https://joykeerz.github.io/">TJW.id</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

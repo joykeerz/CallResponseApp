@@ -49,26 +49,30 @@ Admin Dashboard | Recieved call
                                 <option value="none" disabled>please insert customer first</option>
                             @endforelse
                         </select>
-                        or
-                        <a class="btn btn-success ml-2" href="{{route('mainCustomerRoute')}}" >New</a>
                     </div>
 
-                    <h4 class="card-title">Serial Number</h4>
+                    <h4 class="card-title">ID Machine</h4>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="myInput" name="tb_serial_number">
+                        <input type="text" class="form-control" name="tb_serial_number">
+                    </div>
+                    <h4 class="card-title">Search</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="myInput" placeholder="by ID or Location">
                     </div>
 
                     <div class="table-responsive">
                         <table id="customTable" class="table table-striped table-bordered no-wrap">
                             <thead>
                                 <tr>
-                                    <th>no</th>
+                                    <th>ID Machine</th>
+                                    <th>Location</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $d)
                                 <tr>
-                                    <td>{{$d->machine_serial}}</td>
+                                    <td>{{$d->idmachine}}</td>
+                                    <td>{{$d->machine_location}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -83,7 +87,7 @@ Admin Dashboard | Recieved call
                         @csrf
                     </button>
                 </form>
-                <a href="{{route('recieveList')}}" class="btn btn-danger">
+                <a href="{{ url()->previous() }}" class="btn btn-danger">
                     <span>Back</span>
                 </a>
             </div>

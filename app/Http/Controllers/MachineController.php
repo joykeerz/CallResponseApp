@@ -35,6 +35,7 @@ class MachineController extends Controller
             'tb_location' => 'required',
             'tb_equipment' => 'required',
             'cb_sp' => 'required | integer',
+            'tb_idmachine' => 'required'
         ]);
 
         $machine = new Machine;
@@ -42,6 +43,7 @@ class MachineController extends Controller
         $machine->machine_location = $request->tb_location;
         $machine->machine_serial = $request->tb_serial;
         $machine->machine_equipment = $request->tb_equipment;
+        $machine->idmachine = $request->tb_idmachine;
         $machine->save();
         return redirect()->route('mainMachineRoute')->with('success', 'Created Successfuly');
     }

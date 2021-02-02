@@ -31,6 +31,10 @@ class CustomerController extends Controller
 
     public function createCustomer(Request $request)
     {
+        $validated = $request->validate([
+            'tb_customer_name' => 'required',
+            'tb_customer_contact' => 'required',
+        ]);
         $customer = new Customer;
         $customer->bp_id = $request->cb_bp;
         $customer->nama = $request->tb_customer_name;
@@ -52,6 +56,10 @@ class CustomerController extends Controller
 
     public function updateCustomer(Request $request, $id)
     {
+        $validated = $request->validate([
+            'tb_customer_name' => 'required',
+            'tb_customer_contact' => 'required',
+        ]);
         DB::table('customers')
             ->where('customer_id', $id)
             ->update(array(

@@ -16,6 +16,7 @@ class CreateMachinesTable extends Migration
         Schema::create('machines', function (Blueprint $table) {
             $table->id('machine_id');
             $table->unsignedBigInteger('sp_id')->nullable();
+            $table->string('idmachine');
             $table->string('machine_location');
             $table->string('machine_serial');
             $table->string('machine_equipment');

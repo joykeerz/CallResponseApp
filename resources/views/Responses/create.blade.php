@@ -28,7 +28,11 @@ Admin Dashboard | Call Response
         <strong>Success - </strong> {{ session()->get('success') }}
     </div>
 @endif
-<h4 class="card-title mt-5">Add response for this call</h4>
+<h4 class="card-title mt-5">Add response for this call
+    <a href="{{ url()->previous() }}" class="btn btn-danger">
+        <span>Back</span>
+    </a>
+</h4>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="card">

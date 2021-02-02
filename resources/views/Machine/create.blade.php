@@ -15,7 +15,11 @@ Admin Dashboard | ID Machine
 @endsection
 
 @section('content')
-<h4 class="card-title mt-5">Add new ID Machine</h4>
+<h4 class="card-title mt-5">Add new ID Machine
+    <a href="{{ url()->previous() }}" class="btn btn-danger">
+        <span>Back</span>
+    </a>
+</h4>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         @if ($errors->any())
@@ -34,6 +38,11 @@ Admin Dashboard | ID Machine
                     <h4 class="card-title">Machine Serial</h4>
                     <div class="form-group">
                         <input type="text" class="form-control" name="tb_serial" placeholder="Insert machine id here" value="{{ old('tb_serial') }}">
+                    </div>
+
+                    <h4 class="card-title">ID Machine</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="tb_idmachine" placeholder="Insert machine id here" value="{{ old('tb_serial') }}">
                     </div>
 
                     <h4 class="card-title">Location</h4>

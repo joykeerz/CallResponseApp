@@ -30,7 +30,7 @@ Admin Dashboard | Recieved call
 </div>
 @endif
 <h4 class="card-title mt-5">Recieved call Details
-    <a href="{{route('recieveList')}}" class="btn btn-danger">
+    <a href="{{ url()->previous() }}" class="btn btn-danger">
         <span>Back</span>
     </a>
 </h4>

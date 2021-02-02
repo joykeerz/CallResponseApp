@@ -30,10 +30,12 @@ Admin Dashboard | Recieved call
                             <option value="22">CM(Hardware)</option>
                             <option value="3">Installation</option>
                             <option value="4">Software Development</option>
+                            <option value="5">Force Majeure</option>
+                            <option value="6">Others</option>
                         </select>
                     </div>
 
-                    <h4 class="card-title">Description</h4>
+                    <h4 class="card-title">Reported Issue</h4>
                     <div class="form-group">
                         <textarea class="form-control" rows="3" name="tb_desc"></textarea>
                     </div>
@@ -80,6 +82,7 @@ Admin Dashboard | Recieved call
                 <h4 class="card-title">ID Machine Info</h4>
             </div>
             <div class="card-body">
+                <span><h5><b>ID Machine : </b></h5><p>{{$data->idmachine}}</p></span>
                 <span><h5><b>Serial : </b></h5><p>{{$data->machine_serial}}</p></span>
                 <span><h5><b>Location : </b></h5><p>{{$data->machine_location}}</p></span>
                 <span><h5><b>Equipment : </b></h5><p>{{$data->machine_equipment}}</p></span>

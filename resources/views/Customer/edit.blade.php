@@ -15,7 +15,11 @@ Admin Dashboard | Customers
 @endsection
 
 @section('content')
-<h4 class="card-title mt-5">Edit Customers</h4>
+<h4 class="card-title mt-5">Edit Customers
+    <a href="{{ url()->previous() }}" class="btn btn-danger">
+        <span>Back</span>
+    </a>
+</h4>
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-6">
         <div class="card">
