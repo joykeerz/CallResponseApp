@@ -55,7 +55,24 @@ Admin Dashboard | Recieved call
 
                     <h4 class="card-title">Serial Number</h4>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="tb_serial_number">
+                        <input type="text" class="form-control" id="myInput" name="tb_serial_number">
+                    </div>
+
+                    <div class="table-responsive">
+                        <table id="customTable" class="table table-striped table-bordered no-wrap">
+                            <thead>
+                                <tr>
+                                    <th>no</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($data as $d)
+                                <tr>
+                                    <td>{{$d->machine_serial}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
 
                     <button class="btn btn-labeled btn-primary float-right mb-3" type="submit">
@@ -102,5 +119,16 @@ Admin Dashboard | Recieved call
     src="{{ asset('/dist/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}">
 </script>
 <script src="{{ asset('/dist/dist/js/pages/datatable/datatable-basic.init.js') }}">
+</script>
+<script>
+var table = $('#customTable').DataTable({
+    "paging":   false,
+    "ordering": false,
+    "info":     false,
+    sDom: 'lrtip'
+});
+$('#myInput').on( 'keyup', function () {
+    table.search( this.value ).draw();
+} );
 </script>
 @endsection

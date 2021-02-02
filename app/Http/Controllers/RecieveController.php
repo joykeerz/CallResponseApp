@@ -38,7 +38,8 @@ class RecieveController extends Controller
 
     public function newCalls()
     {
-        return view('Recieves.new');
+        $data = Machine::all();
+        return view('Recieves.new', ['data' => $data]);
     }
 
     public function initNewCalls(Request $request)

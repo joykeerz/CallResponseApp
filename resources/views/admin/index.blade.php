@@ -19,7 +19,7 @@ Admin Dashboard
         background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)), url({{ asset('/dist/assets/images/yaksa/overlay.jpg')}});
         background-repeat: no-repeat;
         background-size: cover;">
-            <div class="container mt-5" style="color: white">
+            <div class="container mt-5" style="color: white; min-height: 70vh">
                 <div class="inline-block text-center">
                     <span><img src="{{ asset('/dist/assets/images/yaksa/logo.png')}}" style="width: 2rem" alt="logo" class="dark-logo" /></span>
                     <span class="align-bottom">Yaksa Harmoni Global</span>
@@ -28,9 +28,64 @@ Admin Dashboard
                 <hr class="my-2">
                 <p></p>
                 <p class="lead text-center">
-                    <a class="btn btn-primary btn-lg btn-rounded" href="{{ route('recieveList') }}" role="button">Start Now</a>
+                    <a class="btn btn-primary btn-lg btn-rounded" href="{{ route('recieveList') }}" role="button">See Data</a>
                 </p>
-                <br><br><br><br><br><br><br><br><br><br><br>
+                <div class="card-group">
+                    <div class="card border-right">
+                        <div class="card-body">
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                                <div>
+                                    <div class="d-inline-flex align-items-center">
+                                        <h2 class="text-dark mb-1 font-weight-medium">{{$data['call_today']}}</h2>
+                                        {{-- <span
+                                            class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">+18.33%
+                                        </span> --}}
+                                    </div>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Calls Today</h6>
+                                </div>
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted"><i class="icon-call-in"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-right">
+                        <div class="card-body">
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                                <div>
+                                    <div class="d-inline-flex align-items-center">
+                                        <h2 class="text-dark mb-1 font-weight-medium">{{$data['responded_call']}}</h2>
+                                        {{-- <span
+                                            class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">+18.33%
+                                        </span> --}}
+                                    </div>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Responded Calls Today</h6>
+                                </div>
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted"><i class="icon-phone"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-right">
+                        <div class="card-body">
+                            <div class="d-flex d-lg-flex d-md-block align-items-center">
+                                <div>
+                                    <div class="d-inline-flex align-items-center">
+                                        <h2 class="text-dark mb-1 font-weight-medium">{{$data['ticket_closed']}}</h2>
+                                        {{-- <span
+                                            class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">+18.33%
+                                        </span> --}}
+                                    </div>
+                                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Ticket Closed Today</h6>
+                                </div>
+                                <div class="ml-auto mt-md-3 mt-lg-0">
+                                    <span class="opacity-7 text-muted"><i class="icon-call-end"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {{-- <img src="{{ asset('/dist/assets/images/yaksa/overlay.jpg')}}" width="30%" alt="" srcset=""> --}}
             </div>
         </div>
